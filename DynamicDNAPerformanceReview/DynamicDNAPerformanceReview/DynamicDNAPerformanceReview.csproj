@@ -340,6 +340,7 @@
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="EFMembership\MyMembership.cs" />
     <Compile Include="EFMembership\MyRole.cs" />
+    <Compile Include="Filtters\Filter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
