@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DynamicDNAPerformanceReview.ReviewTable>
+
+@{
+    ViewBag.Title = "Growth";
+}
+
+<h1 style="text-align:center;">Growth and Develeopment Planning</h1>
+<table class="table">
+    <tr>
+        <th>Growth and career plans</th>
+        <th>Objective</th>
+
+        <th>Due Date</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CareerPlans)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ObjectivesNextPeriod)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+
+            </td>
+
+
+
+        </tr>
+
+
+    }
+</table>

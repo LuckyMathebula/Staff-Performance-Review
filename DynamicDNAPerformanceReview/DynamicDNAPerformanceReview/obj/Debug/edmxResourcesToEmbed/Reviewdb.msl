@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CMRSModelStoreContainer" CdmEntityContainer="CMRSEntities">
+    <EntitySetMapping Name="Managements">
+      <EntityTypeMapping TypeName="CMRSModel.Management">
+        <MappingFragment StoreEntitySet="Managements">
+          <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ComfirmPassword" ColumnName="ComfirmPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewTables">
+      <EntityTypeMapping TypeName="CMRSModel.ReviewTable">
+        <MappingFragment StoreEntitySet="ReviewTables">
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+          <ScalarProperty Name="fkManagementID" ColumnName="fkManagementID" />
+          <ScalarProperty Name="fkEmployeeId" ColumnName="fkEmployeeId" />
+          <ScalarProperty Name="RoleOnProject" ColumnName="RoleOnProject" />
+          <ScalarProperty Name="ProjectEngagement" ColumnName="ProjectEngagement" />
+          <ScalarProperty Name="LineManager" ColumnName="LineManager" />
+          <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />
+          <ScalarProperty Name="PeriodOfReview" ColumnName="PeriodOfReview" />
+          <ScalarProperty Name="proPeer" ColumnName="proPeer" />
+          <ScalarProperty Name="ProManagement" ColumnName="ProManagement" />
+          <ScalarProperty Name="proAgreed" ColumnName="proAgreed" />
+          <ScalarProperty Name="ExPeer" ColumnName="ExPeer" />
+          <ScalarProperty Name="ExMan" ColumnName="ExMan" />
+          <ScalarProperty Name="ExAgreed" ColumnName="ExAgreed" />
+          <ScalarProperty Name="JudPeer" ColumnName="JudPeer" />
+          <ScalarProperty Name="JudMan" ColumnName="JudMan" />
+          <ScalarProperty Name="JudAgreed" ColumnName="JudAgreed" />
+          <ScalarProperty Name="IntPeer" ColumnName="IntPeer" />
+          <ScalarProperty Name="IntMan" ColumnName="IntMan" />
+          <ScalarProperty Name="IntAgreed" ColumnName="IntAgreed" />
+          <ScalarProperty Name="JobPeer" ColumnName="JobPeer" />
+          <ScalarProperty Name="JobMan" ColumnName="JobMan" />
+          <ScalarProperty Name="JobAgreed" ColumnName="JobAgreed" />
+          <ScalarProperty Name="PassPeer" ColumnName="PassPeer" />
+          <ScalarProperty Name="PassMan" ColumnName="PassMan" />
+          <ScalarProperty Name="PassAgreed" ColumnName="PassAgreed" />
+          <ScalarProperty Name="TeaPeer" ColumnName="TeaPeer" />
+          <ScalarProperty Name="TeaMan" ColumnName="TeaMan" />
+          <ScalarProperty Name="TeaAgreed" ColumnName="TeaAgreed" />
+          <ScalarProperty Name="GroPeer" ColumnName="GroPeer" />
+          <ScalarProperty Name="GroMan" ColumnName="GroMan" />
+          <ScalarProperty Name="GroAgreed" ColumnName="GroAgreed" />
+          <ScalarProperty Name="OverallAverage" ColumnName="OverallAverage" />
+          <ScalarProperty Name="GeneralComments" ColumnName="GeneralComments" />
+          <ScalarProperty Name="prComments" ColumnName="prComments" />
+          <ScalarProperty Name="ExComments" ColumnName="ExComments" />
+          <ScalarProperty Name="JuComments" ColumnName="JuComments" />
+          <ScalarProperty Name="intComments" ColumnName="intComments" />
+          <ScalarProperty Name="JobComments" ColumnName="JobComments" />
+          <ScalarProperty Name="PassComments" ColumnName="PassComments" />
+          <ScalarProperty Name="TeaComments" ColumnName="TeaComments" />
+          <ScalarProperty Name="GroComments" ColumnName="GroComments" />
+          <ScalarProperty Name="CareerPlans" ColumnName="CareerPlans" />
+          <ScalarProperty Name="ObjectivesNextPeriod" ColumnName="ObjectivesNextPeriod" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="OverallAVGman" ColumnName="OverallAVGman" />
+          <ScalarProperty Name="OverallAVGAgreed" ColumnName="OverallAVGAgreed" />
+          <ScalarProperty Name="GrandAverage" ColumnName="GrandAverage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAccounts">
+      <EntityTypeMapping TypeName="CMRSModel.UserAccount">
+        <MappingFragment StoreEntitySet="UserAccounts">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ComfirmPassword" ColumnName="ComfirmPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

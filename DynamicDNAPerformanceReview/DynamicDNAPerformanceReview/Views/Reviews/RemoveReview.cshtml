@@ -1,0 +1,76 @@
+﻿@model DynamicDNAPerformanceReview.ReviewTable
+
+@{
+    ViewBag.Title = "RemoveReview";
+}
+
+
+<header>
+
+    <link href="~/Content/MyCSS.css" rel="stylesheet" />
+
+    <link href="~/Trying.css" rel="stylesheet" />
+
+</header>
+
+<img src="~/Images/logo.png" />
+
+
+
+
+<ul class="topnav">
+    <li><a class="active" href="~/Account/Login">Home</a></li>
+    <li><a href="~/Account/Employees">Employees</a></li>
+    <li><a href="~/Reviews/AdminList">Reviews</a></li>
+    <li class="right">
+        @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+   {
+       title = "Signout"
+   })
+    </li>
+
+</ul>
+
+<div class="container">
+
+
+    <h3 style="color:red">Are you sure you want to delete @Html.DisplayFor(model => model.UserAccount.EmployeeName) @Html.DisplayFor(model => model.UserAccount.EmployeeSurname)'s Evaluation?</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+            Date of Review
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOfReview)
+            </dd>
+
+            <dt>
+                Period of Review
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PeriodOfReview)
+            </dd>
+
+            
+
+
+
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("back", "AdminList")
+            </div>
+        }
+    </div>
+</div>

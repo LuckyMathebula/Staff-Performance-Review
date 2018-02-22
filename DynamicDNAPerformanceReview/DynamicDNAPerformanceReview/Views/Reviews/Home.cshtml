@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<style>
+    .LoggedIn{
+        color:darkblue;
+        float:right
+    }
+</style>
+
+<head>
+    <link href="~/Content/MyCSS.css" rel="stylesheet" />
+
+    <link href="~/Trying.css" rel="stylesheet" />
+</head>
+
+ 
+
+<img src="~/Images/logo.png" /> 
+@*<div class="container">
+    <div class="LoggedIn">Logged in as <b> @User.Identity.Name</b>
+  
+    
+    </div>
+</div>*@
+<br />
+<br />
+<body>
+
+    <ul class="topnav">
+        <li><a class="active" href="~/Account/Login">Home</a></li>
+        <li><a href="~/Reviews/FillReview">Performance</a></li>
+        <li><a href="~/Reviews/UserList">Reviews</a></li>
+        <li class="right">
+            @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+       {
+           title = "Signout"
+       })
+        </li>
+
+    </ul>
+
+
+
+
+
+
+
+</body>
+
+<br />
+
+<style>
+    .container2 { /*padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;*/
+        /*width: 378px;*/
+        width:100%;
+        float: right;
+    }
+</style>
+
+<div class="container2 body-content">
+
+
+   
+
+
+</div>
+
+
+
+
+
+<div class="container-fluid">
+ 
+    <div class="row">
+        <!-- Left Side -->
+        <div class="col-sm-8">
+            <img style="float:left; width:860px; height:450px" src="~/Images/slider_bg.jpg" />
+        </div>
+        <!-- Right Side -->
+        <div class="col-sm-4">
+            
+            <div  class="panel panel-primary">
+                
+                
+
+                <div style="background-color:#2a398c; " class="panel-heading">My Profile</div>
+                <div class="panel-body">
+                    <ul>
+
+                        <li><a href="/Reviews/UserList">My Reviews</a> </li>
+                        <li> <a href="/Reviews/FillReview">Fill in</a> </li>
+                        <li> <a href="/Account/LogOff">Sign out</a> </li>
+
+          
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

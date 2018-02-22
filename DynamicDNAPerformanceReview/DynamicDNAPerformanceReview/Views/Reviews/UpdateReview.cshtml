@@ -1,0 +1,1015 @@
+﻿@model DynamicDNAPerformanceReview.ReviewTable
+
+@{
+    ViewBag.Title = "UpdateReview";
+}
+
+
+<head>
+    <link href="~/Trying.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+@*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+
+
+<img style="top:100%" src="~/Images/logo.png" />
+<br />
+<br />
+<body>
+
+    <ul class="topnav">
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="~/Account/Employees">Employees</a></li>
+        <li><a href="~/Reviews/AdminList">Reviews</a></li>
+        @*<li class="right">
+            @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+       {
+           title = "Signout"
+       })
+        </li>*@
+
+    </ul>
+</body>
+
+@using (Html.BeginForm())
+            {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+       
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ReviewID)
+
+
+        @Html.HiddenFor(model => model.proPeer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.ExPeer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.JudPeer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.IntPeer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.JobPeer, new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.HiddenFor(model => model.PassPeer, new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.HiddenFor(model => model.TeaPeer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.GroPeer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.OverallAverage, new { htmlAttributes = new { @class = "form-control" } })
+        
+       <br />
+
+        <div class="col-sm-4">
+
+            <div class="panel panel-primary">
+
+
+
+
+                <div style="background-color:#2a398c; " class="panel-heading">Rate @Html.DisplayFor(model => model.UserAccount.EmployeeName) @Html.DisplayFor(model => model.UserAccount.EmployeeSurname)'s Performance   </div>
+
+                <div class="panel-body">
+                    <ul>
+
+                        @*<li><a href="/Reviews/Index">My Reviews</a> </li>*@
+                        <li> <a style="background-color:#2a398c" class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Empployee Profile</a> </li>
+                       <br />
+                         <li> <button style="background-color:#2a398c" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Management Rating</button> </li>
+                        <br />
+                        <li> <button style="background-color:#2a398c" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Agreed Rating</button>  </li>
+                       <br />
+                         <li> <button style="background-color:#2a398c" class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">View All info</button>  </li>
+                    </ul>
+
+
+                </div>
+            </div>
+            </div>
+
+
+            <br />
+            <br />
+          
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="card card-body">
+
+
+                            <table class="table table-bordered table-hover">
+
+                                <tr><td colspan="5"><h6 style="text-align:center"><b> Performance Review</b></h6></td></tr>
+                                <tr><td colspan="5"><em>please complete all the required sections</em></td> </tr>
+                                <tr>
+                                    <td><b> Admin</b></td>
+                                    <td colspan="5">
+                                        @Html.DropDownList("fkManagementID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.fkManagementID, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td><b> Employee Name</b></td>
+                                    <td colspan="5">
+                                        @Html.DropDownList("fkEmployeeId", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.fkEmployeeId, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+
+
+
+
+
+                                <tr>
+                                    <td> <b> Role On Project</b></td>
+                                    <td colspan="5">
+                                        @Html.EditorFor(model => model.RoleOnProject, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.RoleOnProject, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Project(s)/Engagement(s)</b></td>
+                                    <td colspan="5">
+                                        @Html.EditorFor(model => model.ProjectEngagement, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ProjectEngagement, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> <b> Line Manager (s)</b></td>
+                                    <td colspan="5">
+                                        @Html.EditorFor(model => model.LineManager, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LineManager, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Date of Review</b></td>
+                                    <td colspan="5">
+                                        @Html.EditorFor(model => model.DateOfReview, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DateOfReview, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Period of Review</b></td>
+                                    <td colspan="5">
+                                        @Html.EditorFor(model => model.PeriodOfReview, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PeriodOfReview, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                @*<tr><td>  <br />  </td> <td>  </td> <td>  </td> <td>  </td> <td>  </td></tr>*@
+                                <tr><td colspan="5" style="text-align:center"><b> RATING SCALE FOR PERFORMANCE FACTORS</b></td></tr>
+                                <tr><td>EXCELLENT</td><td style="text-align:center;"> 1 </td>  <td colspan="5">Objective(s) exceed with outstanding achievements</td></tr>
+                                <tr><td>HIGHLY EFFECTIVE</td><td style="text-align:center;"> 2 </td> <td colspan="5">Objective(s) met with notable achievements</td></tr>
+                                <tr><td>COMPETENT</td><td style="text-align:center;"> 3 </td>  <td colspan="5">Objective(s) achieved</td></tr>
+                                <tr><td>LESS THAN COMPETENT</td><td style="text-align:center;"> 4 </td> <td colspan="5">Objective(s) not achieved</td></tr>
+                                <tr><td>UNACCEPTABLE</td><td style="text-align:center;"> 5 </td>  <td colspan="5"> Unacceptable behaviour/performance </td></tr>
+                                @*<tr><td> <br /> </td><td> </td> <td> </td> <td> </td> <td> </td></tr>*@
+
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+            function calcTotal()
+            {
+                var averageTotal = 0;
+                //ProMan Radio Buttons
+                var proManRadios = document.getElementById("ProManTR");
+                var proManList = proManRadios.getElementsByTagName("input");
+
+                for (i = 0; i < proManList.length; i++) {
+                    if (proManList[i].checked) {
+                        averageTotal = averageTotal + Number(proManList[i].value);
+                        break;
+                    }
+                }
+                //ExMan Radio Buttons
+                var exManRadios = document.getElementById("ExManTR");
+                var exManList = exManRadios.getElementsByTagName("input");
+                for (i = 0; i < exManList.length; i++) {
+                if (exManList[i].checked) {
+                        averageTotal = averageTotal + Number(exManList[i].value);
+                        break;
+                    }
+                }
+
+                //jud   Man Radio Buttons
+                var JudManRadios = document.getElementById("JudManTR");
+                var JudManList = JudManRadios.getElementsByTagName("input");
+                for (i = 0; i < exManList.length; i++) {
+                    if (JudManList[i].checked) {
+                        averageTotal = averageTotal + Number(JudManList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //Int  Man Radio Buttons
+                var IntManRadios = document.getElementById("IntManTR");
+                var IntManList = IntManRadios.getElementsByTagName("input");
+                for (i = 0; i < IntManList.length; i++) {
+                    if (IntManList[i].checked) {
+                        averageTotal = averageTotal + Number(IntManList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //Job Man Radio Buttons
+                var JobManRadios = document.getElementById("JobManTR");
+                var JobManList = JobManRadios.getElementsByTagName("input");
+                for (i = 0; i < JobManList.length; i++) {
+                    if (JobManList[i].checked) {
+                        averageTotal = averageTotal + Number(JobManList[i].value);
+                        break;
+                    }
+                }
+
+
+
+
+                //Pass Man Radio Buttons
+                var PassManRadios = document.getElementById("PassManTR");
+                var PassManList = PassManRadios.getElementsByTagName("input");
+                for (i = 0; i < PassManList.length; i++) {
+                    if (PassManList[i].checked) {
+                        averageTotal = averageTotal + Number(PassManList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //TeaMan Radio Buttons
+                var TeaManRadios = document.getElementById("TeaManTR");
+                var TeaManList = TeaManRadios.getElementsByTagName("input");
+                for (i = 0; i < TeaManList.length; i++) {
+                    if (TeaManList[i].checked) {
+                        averageTotal = averageTotal + Number(TeaManList[i].value);
+                        break;
+                    }
+                }
+
+
+                //Gro Man Radio Buttons
+                var GroManRadios = document.getElementById("GroManTR");
+                var GroManList = GroManRadios.getElementsByTagName("input");
+                for (i = 0; i < GroManList.length; i++) {
+                    if (GroManList[i].checked) {
+                        averageTotal = averageTotal + Number(GroManList[i].value);
+                        break;
+                    }
+                }
+
+
+                document.getElementById("OverallAVGman").value = averageTotal;
+            }
+                </script>
+
+
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <div class="card card-body">
+                            <table class="table table-bordered table-hover">
+
+                                <thead>
+                                    <tr style="font-size:12px; background-color:#fdba31; color:#ffffff">
+                                        <th style="font-weight:bolder; font-size:large">Management Rating</th>
+                                        <th>EXCELLENT</th>
+                                        <th>HIGHLY EFFECTIVE</th>
+                                        <th>COMPETENT</th>
+                                        <th>LESS THAN COMPETENT</th>
+                                        <th>UNACCEPTABLE</th>
+                                        <th>Comments (Please add comments, as it is more valuable feedback than a performance rating)</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="ProManTR">
+                                        <td>
+                                            Productivity - Volume of completed work is acceptable, deadlines are met, use of time is appropriate and results are achieved
+
+
+                                            @*<input type="text" value="The facilitator generally establishes a suitable mood for learning" id="SuitableMood" name="SuitableMood" hidden/>*@
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="ProManagement" name="ProManagement" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ProManagement" name="ProManagement" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ProManagement" name="ProManagement" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ProManagement" name="ProManagement" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ProManagement" name="ProManagement" value="5" onchange="calcTotal()"  required></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.prComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.prComments, "", new { @class = "text-danger" })
+                                        </td>
+
+                                    </tr>
+
+
+
+
+                                    <tr id="ExManTR" >
+                                        <td>
+                                            Excellence (quality) - Commitment towards quality and excellence
+
+                                            @*<input type="text" value="The facilitator motivates all learners to learn new information" id="FacilitatorMotivates" name="FacilitatorMotivates" />*@
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="ExMan" name="ExMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ExMan" name="ExMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ExMan" name="ExMan" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ExMan" name="ExMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="ExMan" name="ExMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.ExComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ExComments, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+                                    <tr id="JudManTR">
+                                        <td>
+                                            Judgement - Timeliness and appropriateness of actions, responsible and accountable for decisions taken
+
+                                            @*<input type="text" value="The facilitator explains the usefulness of the content in relation to the workplace." id="ContentUsefulness" name="ContentUsefulness" />*@
+                                        </td>
+
+                                        <td style="text-align:center"><input type="radio" id="JudMan" name="JudMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JudMan" name="JudMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JudMan" name="JudMan" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JudMan" name="JudMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JudMan" name="JudMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.JuComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.JuComments, "", new { @class = "text-danger" })
+                                        </td>
+
+                                    </tr>
+                                    <tr id="IntManTR">
+                                        <td>
+                                            Interpersonal and Communication Skills - Ability to be sensitive and respectful to the needs and feelings of others, communicates well with others, and is open to feedback
+
+                                            @*<input type="text" value="The facilitator introduces the session, and outlines the content" id="IntroducingSessions" name="IntroducingSessions" />*@
+
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="IntMan" name="IntMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="IntMan" name="IntMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="IntMan" name="IntMan" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="IntMan" name="IntMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="IntMan" name="IntMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.intComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.intComments, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+                                    <tr id="JobManTR" >
+                                        <td>
+                                            Job Knowledge - Knowledge of field, depth of knowledge, ability to apply skills in the workplace
+
+                                            @*<input type="text" value="The facilitator clearly writes the learning objectives for each session on the whiteboard" id="ObjectivesClear" name="ObjectivesClear" />*@
+
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="JobMan" name="JobMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JobMan" name="JobMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JobMan" name="JobMan" value="3"  onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JobMan" name="JobMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="JobMan" name="JobMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.JobComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.JobComments, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+
+
+                                    <tr id="PassManTR">
+                                        <td>
+                                            Passion, Commitment and attitude - Interest, cooperation, passion and enthusiasm are evident. Willing to go "the extra mile" to achieve results
+
+                                            @*<input type="text" value="The facilitator is punctual and paces the session well, allowing time for questions and learner interaction" id="FacilitatorPunctual" name="FacilitatorPunctual" />*@
+
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="PassMan" name="PassMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="PassMan" name="PassMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="PassMan" name="PassMan" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="PassMan" name="PassMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="PassMan" name="PassMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td>
+                                            @Html.EditorFor(model => model.PassComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PassComments, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+
+                                    <tr id="TeaManTR">
+                                        <td>
+                                            Teamwork - Ability to work with others to achieve overall goals.
+
+                                            @*<input type="text" value="The facilitator clarifies/explains new concepts" id="ClarrificationOfConcepts" name="ClarrificationOfConcepts" />*@
+
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="TeaMan" name="TeaMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="TeaMan" name="TeaMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="TeaMan" name="TeaMan" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="TeaMan" name="TeaMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="TeaMan" name="TeaMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td colspan="5">
+                                            @Html.EditorFor(model => model.TeaComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TeaComments, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+
+                                    <tr id="GroManTR">
+                                        <td>
+                                            Growth ambition - level of personal ambition to meet challenges to train and develop
+
+                                            @*<input type="text" value="The facilitator evaluates learners’ understanding periodically by asking questions" id="EvaluateEachLearner" name="EvaluateEachLearner" />*@
+
+                                        </td>
+                                        <td style="text-align:center"><input type="radio" id="GroMan" name="GroMan" value="1" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="GroMan" name="GroMan" value="2" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="GroMan" name="GroMan" value="3" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="GroMan" name="GroMan" value="4" onchange="calcTotal()"  required></td>
+                                        <td style="text-align:center"><input type="radio" id="GroMan" name="GroMan" value="5" onchange="calcTotal()"  required></td>
+                                        <td colspan="5">
+                                            @Html.EditorFor(model => model.GroComments, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.GroComments, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                                    <tr>
+                                        <td>
+                                            OVERALL AVERAGE
+                                            @*<input type="text" value="The facilitator walks around the class when we are doing group activities, assisting various groups" id="AssistInGroupActivities" name="AssistInGroupActivities" />*@
+
+                                        </td>
+                                        
+                                        @*<td>@Html.EditorFor(model => model.OverallAverage, new { htmlAttributes = new { @class = "form-control" } })</td>*@
+                                        <td colspan="6"><textarea class="form-control" id="OverallAVGman" name="OverallAVGman" rows="3"></textarea></td>
+                                       
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td>
+                                            Staff member's growth and career plans
+
+                                            @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                                        </td>
+
+                                        <td colspan="6">
+                                            @Html.EditorFor(model => model.CareerPlans, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.CareerPlans, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            Training and skills development objectives for next period
+
+                                            @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                                        </td>
+
+                                        <td colspan="6">
+                                            @Html.EditorFor(model => model.ObjectivesNextPeriod, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ObjectivesNextPeriod, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td>
+                                            Due Date
+
+                                            @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                                        </td>
+
+                                        <td colspan="6">@Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <script>
+                    var date = new Date();
+
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+
+
+
+                    if (month < 10) month = "0" + month;
+                    if (day < 10) day = "0" + day;
+
+                    var today = year + "-" + month + "-" + day;
+                    document.getElementById("DateOfReview").value = today;
+
+                    </script>
+
+
+
+
+
+
+
+
+
+
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--Agreed  rating-->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <script>
+                    var date = new Date();
+
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+
+
+
+                    if (month < 10) month = "0" + month;
+                    if (day < 10) day = "0" + day;
+
+                    var today = year + "-" + month + "-" + day;
+                    document.getElementById("DateOfReview").value = today;
+
+                    </script>
+
+
+
+                    <script>
+            function calculateTotal()
+            {
+                var averageTotal = 0;
+                //ProMan Radio Buttons
+                var proAgreedRadios = document.getElementById("ProAgreedTR");
+                var proAgreedList = proAgreedRadios.getElementsByTagName("input");
+
+                for (i = 0; i < proAgreedList.length; i++) {
+                    if (proAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(proAgreed[i].value);
+                        break;
+                    }
+                }
+
+
+
+
+                //ExMan Radio Buttons
+                var exAgreedRadios = document.getElementById("ExAgreedTR");
+                var exAgreedList = exAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < exAgreedList.length; i++) {
+                if (exAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(exAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //jud   Man Radio Buttons
+                var JudAgreedRadios = document.getElementById("JudAgreedTR");
+                var JudAgreedList = JudAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < JudAgreedList.length; i++) {
+                    if (JudAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(JudAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //Int  Man Radio Buttons
+                var IntAgreedRadios = document.getElementById("IntAgreedTR");
+                var IntAgreedList = IntAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < IntAgreedList.length; i++) {
+                    if (IntAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(IntAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+
+
+                //Job Man Radio Buttons
+                var JobAgreedRadios = document.getElementById("JobAgreedTR");
+                var JobAgreedList = JobAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < JobAgreedList.length; i++) {
+                    if (JobAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(JobAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+
+
+
+
+                //Pass Man Radio Buttons
+                var PassAgreedRadios = document.getElementById("PassAgreedTR");
+                var PassAgreedList = PassAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < PassAgreedList.length; i++) {
+                    if (PassAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(PassAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+
+
+                //TeaMan Radio Buttons
+                var TeaAgreedRadios = document.getElementById("TeaAgreedTR");
+                var TeaAgreedList = TeaAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < TeaAgreedList.length; i++) {
+                    if (TeaAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(TeaAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+                //Gro Man Radio Buttons
+                var GroAgreedRadios = document.getElementById("GroAgreedTR");
+                var GroAgreedList = GroAgreedRadios.getElementsByTagName("input");
+                for (i = 0; i < GroAgreedList.length; i++) {
+                    if (GroAgreedList[i].checked) {
+                        averageTotal = averageTotal + Number(GroAgreedList[i].value);
+                        break;
+                    }
+                }
+
+
+                document.getElementById("OverallAVGAgreed").value = averageTotal;
+            }
+                    </script>
+
+                    <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample3">
+                            <div class="card card-body">
+                                <table class="table table-bordered table-hover">
+
+                                    <thead>
+                                        <tr style="font-size:12px; background-color:#2a398c; color:#ffffff">
+                                            <th style="font-weight:bolder; font-size:large; vertical-align:central;">Agreed Rating</th>
+                                            <th>EXCELLENT</th>
+                                            <th>HIGHLY EFFECTIVE</th>
+                                            <th>COMPETENT</th>
+                                            <th>LESS THAN COMPETENT</th>
+                                            <th>UNACCEPTABLE</th>
+                                            <th>Comments (Please add comments, as it is more valuable feedback than a performance rating)</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="ProAgreedTR">
+                                            <td>
+                                                Productivity - Volume of completed work is acceptable, deadlines are met, use of time is appropriate and results are achieved
+
+
+                                                @*<input type="text" value="The facilitator generally establishes a suitable mood for learning" id="SuitableMood" name="SuitableMood" hidden/>*@
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="proAgreed" name="proAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="proAgreed" name="proAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="proAgreed" name="proAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="proAgreed" name="proAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="proAgreed" name="proAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td>
+                                                @Html.EditorFor(model => model.prComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.prComments, "", new { @class = "text-danger" })
+                                            </td>
+
+                                        </tr>
+
+
+
+
+                                        <tr id="ExAgreedTR">
+                                            <td>
+                                                Excellence (quality) - Commitment towards quality and excellence
+
+                                                @*<input type="text" value="The facilitator motivates all learners to learn new information" id="FacilitatorMotivates" name="FacilitatorMotivates" />*@
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="ExAgreed" name="ExAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="ExAgreed" name="ExAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="ExAgreed" name="ExAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="ExAgreed" name="ExAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="ExAgreed" name="ExAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td>
+                                                @Html.EditorFor(model => model.ExComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ExComments, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+                                        <tr id="JudAgreedTR">
+                                            <td>
+                                                Judgement - Timeliness and appropriateness of actions, responsible and accountable for decisions taken
+
+                                                @*<input type="text" value="The facilitator explains the usefulness of the content in relation to the workplace." id="ContentUsefulness" name="ContentUsefulness" />*@
+                                            </td>
+
+                                            <td style="text-align:center"><input type="radio" id="JudAgreed" name="JudAgreed" value="1" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JudAgreed" name="JudAgreed" value="2" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JudAgreed" name="JudAgreed" value="3" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JudAgreed" name="JudAgreed" value="4" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JudAgreed" name="JudAgreed" value="5" required></td>
+                                            <td>
+                                                @Html.EditorFor(model => model.JuComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.JuComments, "", new { @class = "text-danger" })
+                                            </td>
+
+                                        </tr>
+                                        <tr id="IntAgreedTR">
+                                            <td>
+                                                Interpersonal and Communication Skills - Ability to be sensitive and respectful to the needs and feelings of others, communicates well with others, and is open to feedback
+
+                                                @*<input type="text" value="The facilitator introduces the session, and outlines the content" id="IntroducingSessions" name="IntroducingSessions" />*@
+
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="IntAgreed" name="IntAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="IntAgreed" name="IntAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="IntAgreed" name="IntAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="IntAgreed" name="IntAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="IntAgreed" name="IntAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td>
+                                                @Html.EditorFor(model => model.intComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.intComments, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+                                        <tr id="JobAgreedTR">
+                                            <td>
+                                                Job Knowledge - Knowledge of field, depth of knowledge, ability to apply skills in the workplace
+
+                                                @*<input type="text" value="The facilitator clearly writes the learning objectives for each session on the whiteboard" id="ObjectivesClear" name="ObjectivesClear" />*@
+
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="JobAgreed" name="JobAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JobAgreed" name="JobAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JobAgreed" name="JobAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JobAgreed" name="JobAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="JobAgreed" name="JobAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td>
+                                                @Html.EditorFor(model => model.JobComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.JobComments, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+
+
+                                        <tr id="PassAgreedTR">
+                                            <td>
+                                                Passion, Commitment and attitude - Interest, cooperation, passion and enthusiasm are evident. Willing to go "the extra mile" to achieve results
+
+                                                @*<input type="text" value="The facilitator is punctual and paces the session well, allowing time for questions and learner interaction" id="FacilitatorPunctual" name="FacilitatorPunctual" />*@
+
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="PassAgreed" name="PassAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="PassAgreed" name="PassAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="PassAgreed" name="PassAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="PassAgreed" name="PassAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="PassAgreed" name="PassAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td>
+                                                @Html.EditorFor(model => model.PassComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.PassComments, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+
+                                        <tr id="TeaAgreedTR">
+                                            <td>
+                                                Teamwork - Ability to work with others to achieve overall goals.
+
+                                                @*<input type="text" value="The facilitator clarifies/explains new concepts" id="ClarrificationOfConcepts" name="ClarrificationOfConcepts" />*@
+
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="TeaAgreed" name="TeaAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="TeaAgreed" name="TeaAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="TeaAgreed" name="TeaAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="TeaAgreed" name="TeaAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="TeaAgreed" name="TeaAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td colspan="5">
+                                                @Html.EditorFor(model => model.TeaComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.TeaComments, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+
+                                        <tr id="GroAgreedTR">
+                                            <td>
+                                                Growth ambition - level of personal ambition to meet challenges to train and develop
+
+                                                @*<input type="text" value="The facilitator evaluates learners’ understanding periodically by asking questions" id="EvaluateEachLearner" name="EvaluateEachLearner" />*@
+
+                                            </td>
+                                            <td style="text-align:center"><input type="radio" id="GroAgreed" name="GroAgreed" value="1" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="GroAgreed" name="GroAgreed" value="2" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="GroAgreed" name="GroAgreed" value="3" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="GroAgreed" name="GroAgreed" value="4" onchange="calculateTotal()" required></td>
+                                            <td style="text-align:center"><input type="radio" id="GroAgreed" name="GroAgreed" value="5" onchange="calculateTotal()" required></td>
+                                            <td colspan="5">
+                                                @Html.EditorFor(model => model.GroComments, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.GroComments, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                        
+                                            <td>
+                                                OVERALL AVERAGE
+                                                @*<input type="text" value="The facilitator walks around the class when we are doing group activities, assisting various groups" id="AssistInGroupActivities" name="AssistInGroupActivities" />*@
+
+                                            </td>
+                                        
+                                        
+                                        <td colspan="6"><textarea class="form-control" id="OverallAVGAgreed" name="OverallAVGAgreed" rows="3"></textarea> </td>
+                                        </tr>
+
+
+
+
+
+                                        <tr>
+                                            <td>
+                                                Staff member's growth and career plans
+
+                                                @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                                            </td>
+
+                                            <td colspan="6">
+                                                @Html.EditorFor(model => model.CareerPlans, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.CareerPlans, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>
+                                                Training and skills development objectives for next period
+
+                                                @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                                            </td>
+
+                                            <td colspan="6">
+                                                @Html.EditorFor(model => model.ObjectivesNextPeriod, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ObjectivesNextPeriod, "", new { @class = "text-danger" })
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td>
+                                                Due Date
+
+                                                @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                                            </td>
+
+                                            <td colspan="6">@Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+
+
+
+                                <div class="col-md-6"> </div>
+                                <div class="col-md-4">   <input style="background-color:#2a398c; color:white; width:35%" type="submit" value="Submit" class="btn" /></div>
+
+                                <div class="col-md-4"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn">
+
+    <a href="/Reviews/AdminList"><b>Back</b></a>
+
+</div>
+
+
+<br />
+<br />
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

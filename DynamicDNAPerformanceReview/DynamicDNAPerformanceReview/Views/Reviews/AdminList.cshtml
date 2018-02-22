@@ -1,0 +1,261 @@
+﻿@model IEnumerable<DynamicDNAPerformanceReview.ReviewTable>
+
+@{
+    ViewBag.Title = "AdminList";
+}
+
+
+<head>
+    <link href="~/Trying.css" rel="stylesheet" />
+
+</head>
+@*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+
+
+<img src="~/Images/logo.png" />
+<br />
+<br />
+<body>
+
+    <ul class="topnav">
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#">Performance</a></li>
+        <li><a href="~/Reviews/AdminList">Reviews</a></li>
+        <li class="right">
+            @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+       {
+           title = "Signout"
+       })
+        </li>
+
+    </ul>
+</body>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+
+
+<br />
+
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <!-- Left Side -->
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div style="background-color: #fdba31; color:white; text-align:center; font-size:20px" class="panel-heading"><b> Staff Performance Reviews</b></div>
+
+
+
+
+
+                @*<script>
+function myFunction() {
+
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+                </script>
+                <input class="form-control" style="float:right" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">*@
+      
+
+
+
+
+
+                <table class="table table-bordered table-hover table-condensed">
+                    <tr>
+
+                        <th>
+                            Period of Review
+                        </th>
+
+                        <th>
+                            @Html.ActionLink("Last Name", "AdminList", new { sortOrder = ViewBag.NameSortParameter })
+                        </th>
+
+                        <th>
+                            @Html.ActionLink("Enrollment Date", "AdminList", new { SortOrder = ViewBag.datesortParameter })
+                        </th>
+
+                        <th>
+                            Role on Project
+                        </th>
+                        <th>
+                            Project Engagement
+                        </th>
+                        <th>
+                            Line Manager
+                        </th>
+
+
+
+                        <th>
+                            Admin
+                        </th>
+
+                        <th> Actions</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PeriodOfReview)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserAccount.EmployeeName) @Html.DisplayFor(modelItem => item.UserAccount.EmployeeSurname)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfReview)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoleOnProject)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectEngagement)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LineManager)
+                            </td>
+
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Management.Firstname) @Html.DisplayFor(modelItem => item.Management.Lastname)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Fill", "UpdateReview", new { id = item.ReviewID }) |
+                                @Html.ActionLink("View", "AdminDetails", new { id = item.ReviewID }) |
+                                 @Html.ActionLink("Delete", "RemoveReview", new { id = item.ReviewID })
+                              
+                                <a href="@Url.Action("ExportPDF", "Reviews", new { id = item.ReviewID })"><strong>Download</strong></a>
+                              
+                             </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+            <style>
+                .delete{
+                    color:red;
+                    
+                }
+            </style>
+            @*<img style="float:left; width:860px; height:520px" src="~/Images/slider_bg.jpg" />*@
+        </div>
+        <!-- Right Side -->
+        <div class="col-sm-4">
+
+            <div class="panel panel-primary">
+
+
+
+                
+    <div style="background-color:#2a398c; " class="panel-heading">Admin  </div>
+         
+     <div class="panel-body">
+                    <ul>
+
+                        @*<li><a href="/Reviews/Index">My Reviews</a> </li>*@
+                        <li> <a href="/Account/Employees">Employees</a> </li>
+                        <li> <a href="/reviews/download">Choose Files to download</a> </li>
+                        <li> <a href="/FileDownload/Download"><strong>Download files </strong> </a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+            @*<table class="table">
+                <tr>
+                   
+                    <th>Growth and career plans</th>
+                    <th>Objective</th>
+
+                    <th>Due Date</th>
+
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                       
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CareerPlans)
+
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ObjectivesNextPeriod)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DueDate)
+
+                        </td>
+
+
+
+                    </tr>
+
+
+                }
+            </table>*@
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<style>
+    th {
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #2a398c;
+    }
+</style>
+<br />
+<br />
+
+<div class="active">
+    @ViewBag.Message
+</div>
+
+
+
+
+

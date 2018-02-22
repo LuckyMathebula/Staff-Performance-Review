@@ -1,0 +1,474 @@
+﻿@model DynamicDNAPerformanceReview.ReviewTable
+
+@{
+    ViewBag.Title = "FillReview";
+}
+
+<header>
+
+    <link href="~/Content/MyCSS.css" rel="stylesheet" />
+
+    <link href="~/Trying.css" rel="stylesheet" />
+
+</header>
+
+<img src="~/Images/logo.png" />
+
+
+
+
+<ul class="topnav">
+    <li><a class="active" href="~/Account/Login">Home</a></li>
+    <li><a href="~/Reviews/FillReview">Performance</a></li>
+    <li><a href="~/Reviews/UserList">Reviews</a></li>
+    <li class="right">
+        @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+   {
+       title = "Signout"
+   })
+    </li>
+
+</ul>
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <!-- Left Side -->
+
+
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+
+        <h1 style="text-align:center">Fill in performance review</h1><hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <table style="font-size:13px" border="1" class="table table-bordered table-hover table-condensed">
+
+            <tr><td colspan="5"><h6 style="text-align:center"><b> Performance Review</b></h6></td></tr>
+            <tr><td colspan="5"><em>please complete all the required sections</em></td> </tr>
+            <tr>
+                <td><b> Admin</b></td>
+                <td colspan="5">
+                    <select class="form-control valid" id="fkManagementID" name="fkManagementID" >
+                        <option value="1">Mabitsela Prudence</option>
+                    </select>
+                </td>
+            </tr>
+           
+            <tr>
+                <td> <b> Role On Project</b></td>
+                <td colspan="5">
+                    <select id="RoleOnProject" name="RoleOnProject" class="form-control">
+
+                        <option value="" selected>--Select Role--</option>
+                        <option>MANAGING DIRECTOR</option>
+                        <option>ADMINISTRATOR: EMPLOYMENT EQUITY AND SKILLS DEVELOPMENT</option>
+
+                        <option>SKILLS DEVELOPMENT MANAGER</option>
+                        <option> SENIOR ACADEMIC HEAD</option>
+                        <option>PROJECT COORDINATOR</option>
+                        <option>SENIOR ACADEMIC SPECIALIST FACILITATOR AND MENTOR FOR LEARNERSHIP AND MICROSOFT PROGRAMMES</option>
+                        <option>IT MENTOR/ FACILITATOR</option>
+                        <option>IT FACILITATOR/MENTOR</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><td><b> Project(s)/Engagement(s)</b></td><td colspan="5"> @Html.EditorFor(model => model.ProjectEngagement, new { htmlAttributes = new { @class = "form-control" } }) </td> </tr>
+            <tr>
+                <td> <b> Line Manager (s)</b></td>
+                <td colspan="5">
+                    <select id="LineManager" name="LineManager" class="form-control">
+
+
+                        <option value="Prudence Mabitsela" selected>Prudence Mabitsela     </option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr><td><b> Date of Review</b></td><td colspan="5"><input class="form-control text-box single-line valid" data-val="true" data-val-date="The field DateOfReview must be a date." id="DateOfReview" name="DateOfReview" type="date"> </td> </tr>
+            <tr>
+                <td><b> Period of Review</b></td>
+                <td colspan="5">
+                    <select class="form-control" id="PeriodOfReview" name="PeriodOfReview">
+                        <option value="1stQuarter">1stQuarter</option>
+                        <option value="2ndQuarter">2ndQuarter</option>
+                        <option value="3rdQuarter">3rdQuarter</option>
+                        <option value="4thQuarter">4thQuarter</option>
+                        <option value="" selected>--Select period--</option>
+                    </select>
+                </td>
+            </tr>
+            @*<tr><td>  <br />  </td> <td>  </td> <td>  </td> <td>  </td> <td>  </td></tr>*@
+            <tr><td colspan="5" style="text-align:center"><b> RATING SCALE FOR PERFORMANCE FACTORS</b></td></tr>
+            <tr><td>EXCELLENT</td><td style="text-align:center;"> 1 </td>  <td colspan="5">Objective(s) exceed with outstanding achievements</td></tr>
+            <tr><td>HIGHLY EFFECTIVE</td><td style="text-align:center;"> 2 </td> <td colspan="5">Objective(s) met with notable achievements</td></tr>
+            <tr><td>COMPETENT</td><td style="text-align:center;"> 3 </td>  <td colspan="5">Objective(s) achieved</td></tr>
+            <tr><td>LESS THAN COMPETENT</td><td style="text-align:center;"> 4 </td> <td colspan="5">Objective(s) not achieved</td></tr>
+            <tr><td>UNACCEPTABLE</td><td style="text-align:center;"> 5 </td>  <td colspan="5"> Unacceptable behaviour/performance </td></tr>
+            @*<tr><td> <br /> </td><td> </td> <td> </td> <td> </td> <td> </td></tr>*@
+
+        </table>
+
+
+
+
+
+
+
+
+
+        <script>
+                    var date = new Date();
+
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                  
+
+
+                    if (month < 10) month = "0" + month;
+                    if (day < 10) day = "0" + day;
+
+
+               
+                    var today = year + "-" + month + "-" + day  ;
+                    document.getElementById("DateOfReview").value = today;
+
+        </script>
+
+        <script>
+            function calcAvgTotal()
+            {
+                var averageTotal = 0;
+                //ProPeer Radio Buttons
+                var proPeerRadios = document.getElementById("ProPeerTR");
+                var proPeerList = proPeerRadios.getElementsByTagName("input");
+                
+                for (i = 0; i < proPeerList.length; i++) {
+                    if (proPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(proPeerList[i].value);
+                        break;
+                    }
+                }
+                //ExPeer Radio Buttons
+                var exPeerRadios = document.getElementById("ExPeerTR");
+                var exPeerList = exPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < exPeerList.length; i++) {
+                if (exPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(exPeerList[i].value);
+                        break;
+                    }
+                }
+                
+                //jud   Peer Radio Buttons
+                var JudPeerRadios = document.getElementById("JudpeerTR");
+                var JudPeerList = JudPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < exPeerList.length; i++) {
+                    if (JudPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(JudPeerList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //Int  Peer Radio Buttons
+                var IntPeerRadios = document.getElementById("IntPeerTR");
+                var IntPeerList = IntPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < IntPeerList.length; i++) {
+                    if (IntPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(IntPeerList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //Job Peer Radio Buttons
+                var JobPeerRadios = document.getElementById("JobPeerTR");
+                var JobPeerList = JobPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < JobPeerList.length; i++) {
+                    if (JobPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(JobPeerList[i].value);
+                        break;
+                    }
+                }
+
+
+
+
+                //Pass Peer Radio Buttons
+                var PassPeerRadios = document.getElementById("PassPeerTR");
+                var PassPeerList = PassPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < PassPeerList.length; i++) {
+                    if (PassPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(PassPeerList[i].value);
+                        break;
+                    }
+                }
+
+
+
+                //Tea Peer Radio Buttons
+                var TeaPeerRadios = document.getElementById("TeaPeerTR");
+                var TeaPeerList = TeaPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < TeaPeerList.length; i++) {
+                    if (TeaPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(TeaPeerList[i].value);
+                        break;
+                    }
+                }
+
+
+                //Gro Peer Radio Buttons
+                var GroPeerRadios = document.getElementById("GroPeerTR");
+                var GroPeerList = GroPeerRadios.getElementsByTagName("input");
+                for (i = 0; i < GroPeerList.length; i++) {
+                    if (GroPeerList[i].checked) {
+                        averageTotal = averageTotal + Number(GroPeerList[i].value);
+                        break;
+                    }
+                }
+
+
+                document.getElementById("OverallAverage").value = averageTotal;
+            }
+        </script>
+
+
+
+
+
+
+        <table class="table table-bordered table-hover table-condensed">
+
+            <thead>
+                <tr style="font-size:12px; background-color:#fdba31; color:#ffffff">
+                    <th style="font-weight:bolder; font-size:large">Peer Review</th>
+                    <th>EXCELLENT</th>
+                    <th>HIGHLY EFFECTIVE</th>
+                    <th>COMPETENT</th>
+                    <th>LESS THAN COMPETENT</th>
+                    <th>UNACCEPTABLE</th>
+                    <th>Comments (Please add comments, as it is more valuable feedback than a performance rating)</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="ProPeerTR">
+                    <td>
+                        Productivity - Volume of completed work is acceptable, deadlines are met, use of time is appropriate and results are achieved
+
+
+                        @*<input type="text" value="The facilitator generally establishes a suitable mood for learning" id="SuitableMood" name="SuitableMood" hidden/>*@
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="ProPeer" name="ProPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ProPeer" name="ProPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ProPeer" name="ProPeer" value="3" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ProPeer" name="ProPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ProPeer" name="ProPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td><textarea class="form-control" id="prComments" name="prComments" rows="3"></textarea></td>
+
+                </tr>
+
+
+
+
+                <tr id="ExPeerTR">
+                    <td>
+                        Excellence (quality) - Commitment towards quality and excellence
+
+                        @*<input type="text" value="The facilitator motivates all learners to learn new information" id="FacilitatorMotivates" name="FacilitatorMotivates" />*@
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="ExPeer" name="ExPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ExPeer" name="ExPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ExPeer" name="ExPeer" value="3" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ExPeer" name="ExPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="ProPeer" name="ExPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td><textarea class="form-control" id="ExComments" name="ExComments" rows="3"></textarea></td>
+                </tr>
+                <tr id="JudpeerTR">
+                    <td>
+                        Judgement - Timeliness and appropriateness of actions, responsible and accountable for decisions taken
+
+                        @*<input type="text" value="The facilitator explains the usefulness of the content in relation to the workplace." id="ContentUsefulness" name="ContentUsefulness" />*@
+                    </td>
+
+                    <td style="text-align:center"><input type="radio" id="JudPeer" name="JudPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JudPeer" name="JudPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JudPeer" name="JudPeer" value="3" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JudPeer" name="JudPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JudPeer" name="JudPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td><textarea class="form-control" id="JuComments" name="JuComments" rows="3"></textarea></td>
+
+                </tr>
+                <tr id="IntPeerTR">
+                    <td>
+                        Interpersonal and Communication Skills - Ability to be sensitive and respectful to the needs and feelings of others, communicates well with others, and is open to feedback
+
+                        @*<input type="text" value="The facilitator introduces the session, and outlines the content" id="IntroducingSessions" name="IntroducingSessions" />*@
+
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="IntPeer" name="IntPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="IntPeer" name="IntPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="IntPeer" name="IntPeer" value="3" required></td>
+                    <td style="text-align:center"><input type="radio" id="IntPeer" name="IntPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="IntPeer" name="IntPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td><textarea class="form-control" id="IntComments" name="IntComments" rows="3"></textarea></td>
+                </tr>
+                <tr id="JobPeerTR">
+                    <td>
+                        Job Knowledge - Knowledge of field, depth of knowledge, ability to apply skills in the workplace
+
+                        @*<input type="text" value="The facilitator clearly writes the learning objectives for each session on the whiteboard" id="ObjectivesClear" name="ObjectivesClear" />*@
+
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="JobPeer" name="JobPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JobPeer" name="JobPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JobPeer" name="JobPeer" value="3"onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JobPeer" name="JobPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="JobPeer" name="JobPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td><textarea class="form-control" id="JobComments" name="JobComments" rows="3"></textarea></td>
+                </tr>
+
+
+                <tr id="PassPeerTR">
+                    <td>
+                        Passion, Commitment and attitude - Interest, cooperation, passion and enthusiasm are evident. Willing to go "the extra mile" to achieve results
+
+                        @*<input type="text" value="The facilitator is punctual and paces the session well, allowing time for questions and learner interaction" id="FacilitatorPunctual" name="FacilitatorPunctual" />*@
+
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="PassPeer" name="PassPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="PassPeer" name="PassPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="PassPeer" name="PassPeer" value="3" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="PassPeer" name="PassPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="PassPeer" name="PassPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td><textarea class="form-control" id="PassComments" name="PassComments" rows="3"></textarea></td>
+                </tr>
+
+                <tr id="TeaPeerTR">
+                    <td>
+                        Teamwork - Ability to work with others to achieve overall goals.
+
+                        @*<input type="text" value="The facilitator clarifies/explains new concepts" id="ClarrificationOfConcepts" name="ClarrificationOfConcepts" />*@
+
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="TeaPeer" name="TeaPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="TeaPeer" name="TeaPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="TeaPeer" name="TeaPeer" value="3" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="TeaPeer" name="TeaPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="TeaPeer" name="TeaPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td colspan="5"><textarea class="form-control" id="TeaComments" name="TeaComments" rows="3"></textarea></td>
+                </tr>
+
+                <tr id="GroPeerTR">
+                    <td>
+                        Growth ambition - level of personal ambition to meet challenges to train and develop
+
+                        @*<input type="text" value="The facilitator evaluates learners’ understanding periodically by asking questions" id="EvaluateEachLearner" name="EvaluateEachLearner" />*@
+
+                    </td>
+                    <td style="text-align:center"><input type="radio" id="GroPeer" name="GroPeer" value="1" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="GroPeer" name="GroPeer" value="2" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="GroPeer" name="GroPeer" value="3" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="GroPeer" name="GroPeer" value="4" onchange="calcAvgTotal()" required></td>
+                    <td style="text-align:center"><input type="radio" id="GroPeer" name="GroPeer" value="5" onchange="calcAvgTotal()" required></td>
+                    <td colspan="5"><textarea class="form-control" id="GroComments" name="GroComments" rows="3"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        OVERALL AVERAGE
+                        @*<input type="text" value="The facilitator walks around the class when we are doing group activities, assisting various groups" id="AssistInGroupActivities" name="AssistInGroupActivities" />*@
+
+                    </td>
+
+                    <td colspan="6"><textarea class="form-control" id="OverallAverage" name="OverallAverage" rows="3"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        General Comments(please add any general comments not covered)
+                        @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                    </td>
+
+                    <td colspan="6"><textarea class="form-control" id="GeneralComments" name="GeneralComments" rows="3"></textarea></td>
+                </tr>
+
+
+
+
+
+                <tr>
+                    <td>
+                        Staff member's growth and career plans
+
+                        @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                    </td>
+
+                    <td colspan="6"><textarea class="form-control" id="CareerPlans" name="CareerPlans" rows="3"></textarea></td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        Training and skills development objectives for next period
+
+                        @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                    </td>
+
+                    <td colspan="6"><textarea class="form-control" id="ObjectivesNextPeriod" name="ObjectivesNextPeriod" rows="3"></textarea></td>
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                       Due Date
+
+                        @*<input type="text" value="The facilitator uses visual aids to make the lesson more interesting" id="UseOfVisualAid" name="UseOfVisualAid" />*@
+
+                    </td>
+
+                    <td colspan="6"><input class="form-control text-box single-line" data-val="true" data-val-date="The field DueDate must be a date." id="DueDate" name="DueDate" type="date" value=""></td>
+                </tr>
+
+
+            </tbody> 
+
+        </table>
+
+
+       <div class="col-md-6"> </div>
+        <div class="col-md-4">   <input type="submit" value="Submit" class="btn btn-success" /></div> 
+          
+        <div class="col-md-4"> </div>
+        </div><br />
+       
+}
+ <div class="float-lt">
+    <a style="color:#fdba31!important" href="/Reviews/Home"><b>Back </b></a>
+</div>
+ <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+      
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbConnectionStoreContainer" CdmEntityContainer="Performance_Review_DNAEntities">
+    <EntitySetMapping Name="EmployeeAccounts">
+      <EntityTypeMapping TypeName="dbConnection.EmployeeAccount">
+        <MappingFragment StoreEntitySet="EmployeeAccount">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Role_On_Project" ColumnName="Role_On_Project" />
+          <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewTables">
+      <EntityTypeMapping TypeName="dbConnection.ReviewTable">
+        <MappingFragment StoreEntitySet="ReviewTable">
+          <ScalarProperty Name="OverallAverage" ColumnName="OverallAverage" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="AgreedRating" ColumnName="AgreedRating" />
+          <ScalarProperty Name="ManagementRating" ColumnName="ManagementRating" />
+          <ScalarProperty Name="PeerCustomerRating" ColumnName="PeerCustomerRating" />
+          <ScalarProperty Name="PerformanceCriteria" ColumnName="PerformanceCriteria" />
+          <ScalarProperty Name="PeriodOfReview" ColumnName="PeriodOfReview" />
+          <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />
+          <ScalarProperty Name="LineManager" ColumnName="LineManager" />
+          <ScalarProperty Name="Projects" ColumnName="Projects" />
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_employeereviews">
+      <EntityTypeMapping TypeName="dbConnection.vw_employeereviews">
+        <MappingFragment StoreEntitySet="vw_employeereviews">
+          <ScalarProperty Name="OverallAverage" ColumnName="OverallAverage" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="AgreedRating" ColumnName="AgreedRating" />
+          <ScalarProperty Name="ManagementRating" ColumnName="ManagementRating" />
+          <ScalarProperty Name="PeerCustomerRating" ColumnName="PeerCustomerRating" />
+          <ScalarProperty Name="PerformanceCriteria" ColumnName="PerformanceCriteria" />
+          <ScalarProperty Name="PeriodOfReview" ColumnName="PeriodOfReview" />
+          <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />
+          <ScalarProperty Name="LineManager" ColumnName="LineManager" />
+          <ScalarProperty Name="Projects" ColumnName="Projects" />
+          <ScalarProperty Name="Role_On_Project" ColumnName="Role_On_Project" />
+          <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

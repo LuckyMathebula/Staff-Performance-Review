@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "blah";
+}
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".jsMark").keyup(calculateResult);
+        $(".jsCal").keyup(calculateResult);
+        $(".jsMark").change(calculateResult);
+        $(".jsCal").change(calculateResult);
+        $(".jsMark,.jsCal").keydown(jquery.min.js.isNumberKey);
+    });
+
+    function calculateResult() {
+        var ta;
+        var tr = $(this).closest('tr');
+        $(tr).find('td').each(function () {
+            $(this).find('.tdTotalMark').each(function () {
+                ta = $(this).val();
+            });
+        });
+
+        var cost = this.value;
+        var tot = $(parseFloat(cost) / parseFloat(ta)) * 100;
+
+        if (cost != "") {
+            $('#' + this.id + 'Value').val(tot.toFixed(2));
+        }
+
+        $('#tblStudent tr.trRow1').each(function () {
+            var sum = 0;
+            $(this).find('td').each(function () {
+                $(this).find('.jsMark').each(function () {
+                    var combat = $(this).val();
+                    if (!isNaN(combat) && combat.length !== 0) {
+                        sum = parseFloat(sum) + parseFloat(combat);
+                    }
+                });
+            });
+            $(this).find('td:last').find('input.jsMarkTot').val(sum.toFixed(2));
+        });
+
+        $('#tblStudent tr.trRow2').each(function () {
+            var sum2 = 0;
+            $(this).find('td').each(function () {
+                $(this).find('.jsCal').each(function () {
+                    var combat2 = $(this).val();
+                    if (!isNaN(combat2) && combat2.length !== 0) {
+                        sum2 = parseFloat(sum2) + parseFloat(combat2);
+                    }
+                });
+            });
+            $(this).find('td:last').find('input.jsCalTot').val(sum2.toFixed(2));
+        });
+    }
+</script>
+
+
+@*<script src="~/Scripts/Helper.js"> </script>*@
+@section featured {
+    <section class="featured">
+        @using (Html.BeginForm())
+        {
+            <div class="content-wrapper">
+                <table class="table table-striped table-bordered table-condensed"
+                       id="tblStudent"
+                       style="width:100%;">
+                    <thead>
+                        <tr style="border-bottom: solid;border-top: solid">
+                            <th> Name </th>
+                            <th> Total Marks </th>
+                            <th> Maths </th>
+                            <th> Science </th>
+                            <th> Chemistry </th>
+                            <th> Microbiology </th>
+                            <th> Physics </th>
+                            <th> English </th>
+                            <th> Total </th>
+                        </tr>
+                    </thead>
+                    <tr class="trRow1">
+                        <td rowspan="2"
+                            style="vertical-align:middle;">
+                            <b> ALAX </b>
+                        </td>
+                        <td rowspan="2"
+                            style="vertical-align:middle;">
+                            <input type="text"
+                                   disabled="disabled"
+                                   id="txtTotalMark"
+                                   class="tdTotalMark"
+                                   style="width:80px; height:50px;"
+                                   value="600" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMark"
+                                   id="TeaPeer" name="TeaPeer"
+                                   style="width:70px; height:15px;" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMark"
+                                   id="GroPeer" name="GroPeer"
+                                   style="width:70px; height:15px;" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMark"
+                                   id="txtChemistry"
+                                   style="width:70px; height:15px;" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMark"
+                                   id="txtMicrobiology"
+                                   style="width:70px; height:15px;" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMark"
+                                   id="txtPhysics"
+                                   style="width:70px; height:15px;" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMark"
+                                   id="txtEnglish"
+                                   style="width:70px; height:15px;" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsMarkTot"
+                                   id="txtTotal"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                    </tr>
+                    <tr class="trRow2">
+                        <td>
+                            <input type="text"
+                                   class="jsCal"
+                                   id="txtMathsValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsCal"
+                                   id="txtScienceValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsCal"
+                                   id="txtChemistryValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsCal"
+                                   id="txtMicrobiologyValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsCal"
+                                   id="txtPhysicsValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsCal"
+                                   id="txtEnglishValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="jsCalTot"
+                                   id="txtTotalValue"
+                                   style="width:70px; height:15px;"
+                                   disabled="disabled" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </section>
+}
+

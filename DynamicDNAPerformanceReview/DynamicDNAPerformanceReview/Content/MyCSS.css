@@ -1,0 +1,27 @@
+﻿   .CentContent {
+       height: 200px;
+        width: 100%;
+        position: relative;
+        /*top: 50%;*/
+        left: 22%;
+        /*margin-top: -100px;*/
+        margin-left: -142px;
+        padding:2px;
+    }
+
+     .labels {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        position: relative;
+        min-height: 1px;
+        padding-right: 50px;
+        padding-left: 54px;
+        color: gray;
+    }
+    
+    .form{
+        border-radius:6px;
+        border:solid;
+        border-color:#2a398c;
+    }

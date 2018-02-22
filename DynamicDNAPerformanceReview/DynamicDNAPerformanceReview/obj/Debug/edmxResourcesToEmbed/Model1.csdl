@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ddnappst_ReviewdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Management">
+    <Key>
+      <PropertyRef Name="ManagementID" />
+    </Key>
+    <Property Name="ManagementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lastname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Firstname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ComfirmPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ReviewTables" Relationship="Self.FK_ReviewTable_Management" FromRole="Managements" ToRole="ReviewTables" />
+  </EntityType>
+  <EntityType Name="ReviewTable">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkManagementID" Type="Int32" />
+    <Property Name="fkEmployeeId" Type="Int32" />
+    <Property Name="RoleOnProject" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectEngagement" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LineManager" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfReview" Type="DateTime" Precision="3" />
+    <Property Name="PeriodOfReview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="proPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProManagement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="proAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JudPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JudMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JudAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IntPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IntMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IntAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PassPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PassMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PassAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TeaPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TeaMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TeaAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroPeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroMan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroAgreed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OverallAverage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GeneralComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="prComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JuComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="intComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PassComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TeaComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CareerPlans" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ObjectivesNextPeriod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="OverallAVGman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OverallAVGAgreed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GrandAverage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Management" Relationship="Self.FK_ReviewTable_Management" FromRole="ReviewTables" ToRole="Managements" />
+    <NavigationProperty Name="UserAccount" Relationship="Self.FK_ReviewTable_UserAccounts" FromRole="ReviewTables" ToRole="UserAccounts" />
+  </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeSurname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ComfirmPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ReviewTables" Relationship="Self.FK_ReviewTable_UserAccounts" FromRole="UserAccounts" ToRole="ReviewTables" />
+  </EntityType>
+  <Association Name="FK_ReviewTable_Management">
+    <End Role="Managements" Type="Self.Management" Multiplicity="0..1" />
+    <End Role="ReviewTables" Type="Self.ReviewTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managements">
+        <PropertyRef Name="ManagementID" />
+      </Principal>
+      <Dependent Role="ReviewTables">
+        <PropertyRef Name="fkManagementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewTable_UserAccounts">
+    <End Role="UserAccounts" Type="Self.UserAccount" Multiplicity="0..1" />
+    <End Role="ReviewTables" Type="Self.ReviewTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccounts">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ReviewTables">
+        <PropertyRef Name="fkEmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRMSEntities3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Managements" EntityType="Self.Management" />
+    <EntitySet Name="ReviewTables" EntityType="Self.ReviewTable" />
+    <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+    <AssociationSet Name="FK_ReviewTable_Management" Association="Self.FK_ReviewTable_Management">
+      <End Role="Managements" EntitySet="Managements" />
+      <End Role="ReviewTables" EntitySet="ReviewTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewTable_UserAccounts" Association="Self.FK_ReviewTable_UserAccounts">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="ReviewTables" EntitySet="ReviewTables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

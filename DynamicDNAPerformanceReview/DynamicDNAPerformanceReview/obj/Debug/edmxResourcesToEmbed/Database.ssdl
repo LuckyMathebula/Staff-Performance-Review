@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbConnection.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EmployeeAccount">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role_On_Project" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="170" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewTable">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Projects" Type="nvarchar" MaxLength="200" />
+    <Property Name="LineManager" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="DateOfReview" Type="datetime" Nullable="false" />
+    <Property Name="PeriodOfReview" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="PerformanceCriteria" Type="varchar(max)" />
+    <Property Name="PeerCustomerRating" Type="int" Nullable="false" />
+    <Property Name="ManagementRating" Type="int" Nullable="false" />
+    <Property Name="AgreedRating" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar(max)" />
+    <Property Name="OverallAverage" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Performance Review DNA.dbo.vw_employeereviews' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_employeereviews">
+    <Key>
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="EmployeeSurname" />
+      <PropertyRef Name="Role_On_Project" />
+      <PropertyRef Name="LineManager" />
+      <PropertyRef Name="DateOfReview" />
+      <PropertyRef Name="PeriodOfReview" />
+      <PropertyRef Name="PeerCustomerRating" />
+      <PropertyRef Name="ManagementRating" />
+      <PropertyRef Name="AgreedRating" />
+    </Key>
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role_On_Project" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="Projects" Type="nvarchar" MaxLength="200" />
+    <Property Name="LineManager" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="DateOfReview" Type="datetime" Nullable="false" />
+    <Property Name="PeriodOfReview" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="PerformanceCriteria" Type="varchar(max)" />
+    <Property Name="PeerCustomerRating" Type="int" Nullable="false" />
+    <Property Name="ManagementRating" Type="int" Nullable="false" />
+    <Property Name="AgreedRating" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar(max)" />
+    <Property Name="OverallAverage" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_EmployeeAccount_ReviewTable">
+    <End Role="ReviewTable" Type="Self.ReviewTable" Multiplicity="1" />
+    <End Role="EmployeeAccount" Type="Self.EmployeeAccount" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewTable">
+        <PropertyRef Name="ReviewID" />
+      </Principal>
+      <Dependent Role="EmployeeAccount">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbConnectionStoreContainer">
+    <EntitySet Name="EmployeeAccount" EntityType="Self.EmployeeAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewTable" EntityType="Self.ReviewTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_employeereviews" EntityType="Self.vw_employeereviews" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_employeereviews].[EmployeeName] AS [EmployeeName], 
+    [vw_employeereviews].[EmployeeSurname] AS [EmployeeSurname], 
+    [vw_employeereviews].[Role_On_Project] AS [Role_On_Project], 
+    [vw_employeereviews].[Projects] AS [Projects], 
+    [vw_employeereviews].[LineManager] AS [LineManager], 
+    [vw_employeereviews].[DateOfReview] AS [DateOfReview], 
+    [vw_employeereviews].[PeriodOfReview] AS [PeriodOfReview], 
+    [vw_employeereviews].[PerformanceCriteria] AS [PerformanceCriteria], 
+    [vw_employeereviews].[PeerCustomerRating] AS [PeerCustomerRating], 
+    [vw_employeereviews].[ManagementRating] AS [ManagementRating], 
+    [vw_employeereviews].[AgreedRating] AS [AgreedRating], 
+    [vw_employeereviews].[Comments] AS [Comments], 
+    [vw_employeereviews].[OverallAverage] AS [OverallAverage]
+    FROM [dbo].[vw_employeereviews] AS [vw_employeereviews]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_EmployeeAccount_ReviewTable" Association="Self.FK_EmployeeAccount_ReviewTable">
+      <End Role="ReviewTable" EntitySet="ReviewTable" />
+      <End Role="EmployeeAccount" EntitySet="EmployeeAccount" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

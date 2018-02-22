@@ -1,0 +1,432 @@
+﻿@model DynamicDNAPerformanceReview.ReviewTable
+
+@{
+    ViewBag.Title = "Modal";
+}
+
+<button style="float:right; background-color:#2a398c;" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Inquiries</button> 
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Contact us</h4>
+            </div>
+            <div class="modal-body">
+               
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div style="opacity:0.9; z-index:3" class="form-horizontal">
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <label style="color:white" class="form-inline" for="fkManagementID">Admin</label>
+                        <div class="form-group">
+
+                            @*@Html.LabelFor(model => model.fkManagementID, "fkManagementID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                @Html.DropDownList("fkManagementID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.fkManagementID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        @*<label style="color:white" class="form-inline" for="fkEmployeeId">Name</label>
+                            <div class="form-group">
+
+                              @Html.LabelFor(model => model.fkEmployeeId, "fkEmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("fkEmployeeId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.fkEmployeeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+
+                        <div class="labelss">
+                            <label style="color:white" for="RoleOnProject">Role on Project</label>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="RoleOnProject" name="RoleOnProject" class="form-control">
+
+                                    <option value=""></option>
+                                    <option>Managing Director</option>
+                                    <option>Operations and Specialist</option>
+
+                                    <option>Academic Head</option>
+                                    <option>Academic Manager</option>
+                                    <option>Office Assistance</option>
+                                    <option>Administrator</option>
+                                    <option>Project Coordinator</option>
+                                    <option>Systems Development Intern</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.RoleOnProject, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.RoleOnProject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <label style="color:white" for="ProjectEngagement">Project Engagement</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ProjectEngagement, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ProjectEngagement, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="LineManager">Line Manager</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="LineManager" name="LineManager" class="form-control">
+
+                                    <option value=""></option>
+                                    <option>Prudence Mabitsela     </option>
+
+                                </select>
+                                @*@Html.EditorFor(model => model.LineManager, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.LineManager, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="DateOfReview"> Review  Date</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" data-val="true" data-val-date="The field DateOfReview must be a date." data-val-required="The DateOfReview field is required." id="DateOfReview" name="DateOfReview" type="date" value="">
+                                @*@Html.EditorFor(model => model.DateOfReview, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.DateOfReview, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="PeriodOfReview"> Review Period</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="PeriodOfReview" name="PeriodOfReview" class="form-control">
+
+                                    <option value=""></option>
+                                    <option>1st Quarter    </option>
+                                    <option>2nd Quarter    </option>
+                                    <option>3rd Quarter    </option>
+                                    <option>4th Quarter    </option>
+                                </select>
+                                @*@Html.EditorFor(model => model.PeriodOfReview, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.PeriodOfReview, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="proPeer">Production</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                @*<input id="proPeer" class="form" type="radio" name="proPeer" value="proPeer">
+                                    <input id="proPeer" class="form" type="radio" name="proPeer" value="proPeer">
+                                    <input id="proPeer" class="form" type="radio" name="proPeer" value="proPeer">*@
+                                <select id="proPeer" name="proPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                <br />
+
+                                @*@Html.EditorFor(model => model.proPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.proPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <label style="color:white" for="ExPeer">Excellence</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+
+                                <select id="ExPeer" name="ExPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.ExPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.ExPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="JudPeer">Judgement</label>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="JudPeer" name="JudPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.JudPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.JudPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="IntPeer">Communication Skills</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="IntPeer" name="IntPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.IntPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.IntPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <label style="color:white" for="JobPeer">Job Knowldge</label>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="JobPeer" name="JobPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.JobPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.JobPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="PassPeer">Attitude</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="PassPeer" name="PassPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.PassPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.PassPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="TeaPeer">Teamwork</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="TeaPeer" name="TeaPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.TeaPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.TeaPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="GroPeer">Ambition</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <select id="GroPeer" name="GroPeer" class="form-control">
+
+                                    <option value=""></option>
+
+                                    <option value="1">1.EXCELLENT</option>
+
+                                    <option value="2">2.HIGHLY EFFECTIVE</option>
+
+                                    <option value="3">3.COMPETENT</option>
+
+                                    <option value="4">4.LESS THAN COMPETENT</option>
+                                    <option value="5">5.UNACCEPTABLE</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.GroPeer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.GroPeer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="OverallAverage">Overall Average</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+
+                                @*<input id="OverallAverage" name="OverallAverage" type="range" />*@
+                                @Html.EditorFor(model => model.OverallAverage, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OverallAverage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="GeneralComments">General Comments</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <textarea id="GeneralComments" name="GeneralComments" rows="4" cols="50" class="form-control"> </textarea>
+                                @*@Html.EditorFor(model => model.GeneralComments, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.GeneralComments, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <label style="color:white" for="CareerPlans">Career Plans</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <textarea id="CareerPlans" name="CareerPlans" rows="4" cols="50" class="form-control"> </textarea>
+                                @*@Html.EditorFor(model => model.GeneralComments, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.CareerPlans, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <label style="color:white" for="ObjectivesNextPeriod">Objectives for Next Period</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <textarea id="ObjectivesNextPeriod" name="ObjectivesNextPeriod" rows="4" cols="50" class="form-control"> </textarea>
+                                @*@Html.EditorFor(model => model.GeneralComments, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.ObjectivesNextPeriod, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <label style="color:white" class="control-label col-md-2" for="DueDate">Due Date</label>
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" data-val="true" data-val-date="The field DueDate must be a date." data-val-required="The DueDate field is required." id="DueDate" name="DueDate" type="date" value="">
+                                @*@Html.EditorFor(model => model.DateOfReview, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            <div style="color:white" class="col-md-offset-2 col-md-10">
+                                <input style="background-color:#2a398c; color:white; border-color:#fdba31; border-width:2px; font-weight: bold;" type="submit" value="Submit" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    @Html.HiddenFor(model => model.ProManagement, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.ExMan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.JudMan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.IntMan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.JobMan, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.HiddenFor(model => model.PassMan, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.HiddenFor(model => model.TeaMan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.GroMan, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+
+                    @Html.HiddenFor(model => model.proAgreed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.ExAgreed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.JudAgreed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.IntAgreed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.JobAgreed, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.HiddenFor(model => model.PassAgreed, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.HiddenFor(model => model.TeaAgreed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.GroAgreed, new { htmlAttributes = new { @class = "form-control" } })
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+</div>

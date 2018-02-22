@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DynamicDNAPerformanceReview.UserAccount>
+
+@{
+    ViewBag.Title = "Employees";
+}
+<head>
+    <link href="~/Trying.css" rel="stylesheet" />
+
+</head>
+@*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+
+
+<img src="~/Images/logo.png" />
+<br />
+<br />
+<body>
+
+    <ul class="topnav">
+        <li><a class="active" href="~/Reviews/Home">Home</a></li>
+
+        <li><a href="~/Account/Employees">Employees</a></li>
+        <li><a href="~/Reviews/AdminList">Reviews</a></li>
+        <li class="right">
+            @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+       {
+           title = "Signout"
+       })
+        </li>
+
+    </ul>
+</body>
+
+
+
+
+
+
+<br />
+
+<div class="container-fluid">
+
+    <div class="row">
+        <!-- Left Side -->
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div style="background-color: #fdba31; color:white; text-align:center; font-size:20px" class="panel-heading"><b> Dynamic DNA Employees</b></div>
+
+                <table class="table table-hover ">
+                    <tr>
+
+                        <th>
+                           Employee Name
+                        </th>
+
+                        <th>
+                            Employee Surname
+                        </th>
+
+                        <th>
+                          Username
+                        </th>
+
+                       
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeSurname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                           
+
+                        </tr>
+                    }
+
+                </table>
+                </div>
+
+            <div class="btn">
+
+                <a href="/Reviews/AdminList"><b>Back</b></a>
+
+            </div>
+           
+        </div>
+    </div>
+</div>

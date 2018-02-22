@@ -1,0 +1,103 @@
+﻿@model DynamicDNAPerformanceReview.UserAccount
+
+@{
+    ViewBag.Title = "Register";
+}
+<head>
+    @*<link href="~/Content/MyCSS.css" rel="stylesheet" />*@
+    <link href="~/Trying.css" rel="stylesheet" />
+</head>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Message
+    </div>
+}
+
+   
+
+
+
+
+
+<img src="~/Images/logo.png" />
+<br />
+<br />
+<body>
+
+    <ul class="topnav">
+        <li><a class="active" href="~/Account/Login">Home</a></li>
+        <li><a href="~/Performance/Create">Performance</a></li>
+        <li><a href="~/Performance/Index">Reviews</a></li>
+        <li class="right">
+            @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+       {
+           title = "Signout"
+       })
+        </li>
+
+    </ul>
+</body>
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="CentContent">
+        <div style="padding-left:35%" class="form-horizontal">
+            <br />
+            @*<img src="~/Images/logo.png" />*@
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="field">
+                <label class="labels" for="EmployeeName">First Name </label>
+                <input type="text" id="EmployeeName" name="EmployeeName" required="required" autofocus="autofocus" class="form-control" />
+            </div>
+
+
+
+
+            <div class="field">
+                <label class="labels" for="EmployeeSurname">Surname </label>
+                <input type="text" id="EmployeeSurname" name="EmployeeSurname" required="required" autofocus="autofocus" class="form-control" />
+            </div>
+
+
+
+            <div class="field">
+                <label class="labels" for="Username">Username </label>
+                <input type="email" id="Username" name="Username" required="required" autofocus="autofocus" class="form-control" />
+            </div>
+
+
+
+            <div class="field">
+                <label class="labels" for="Password">Password </label>
+                <input type="password" id="Password" name="Password" required="required" autofocus="autofocus" class="form-control" />
+            </div>
+
+
+
+
+            <div class="field">
+                <label class="labels" for="ComfirmPassword">Comfirm Password </label>
+                <input type="password" id="ComfirmPassword" name="ComfirmPassword" required="required" autofocus="autofocus" class="form-control" />
+            </div>
+
+            <br />
+            
+
+            <input style="background-color:#2a398c; color:white; border-color:#fdba31; border-width:2px; font-weight: bold;" type="submit" value="Register" class="btn btn-default" />
+        </div>
+        </div>
+        }
+       
+        
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

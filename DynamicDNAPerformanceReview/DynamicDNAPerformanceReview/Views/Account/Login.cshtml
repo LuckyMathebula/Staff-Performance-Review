@@ -1,0 +1,196 @@
+﻿@model DynamicDNAPerformanceReview.UserAccount
+
+@{
+    ViewBag.Title = "Login";
+}
+<head>
+    <link href="~/Content/MyCSS.css" rel="stylesheet" />
+
+    <link href="~/Trying.css" rel="stylesheet" />
+</head>
+
+<br />
+<img src="~/Images/logo.png" />
+<br />
+<br />
+<body>
+
+    <ul class="topnav">
+        <li><a class="active" href="~/Reviews/Home">Home</a></li>
+        <li><a href="~/Reviews/Create">Performance</a></li>
+        <li><a href="~/Reviews/Index">Reviews</a></li>
+        <li class="right">
+            @Html.ActionLink("Welcome " + @User.Identity.Name + "!", "LogOff", "Account", routeValues: null, htmlAttributes: new
+       {
+           title = "Signout"
+       })
+        </li>
+
+    </ul>
+</body>
+
+
+
+
+<style>
+     .CentContent {
+        height: 200px;
+        width: 400px;
+        position: relative;
+        /*top: 50%;*/
+        left: 50%;
+        /*margin-top: -100px;*/
+        margin-left: -142px;
+        padding:2px;
+
+    }
+
+       .labels {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        position: relative;
+        min-height: 1px;
+        padding-right: 84px;
+        padding-left: 109px;
+        color: white;
+    }
+</style>
+@*Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl *@ 
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="CentContent">
+
+            <br />
+
+            @*<img src="~/Images/logo.png" />*@
+
+            <br />
+            <br />
+
+            <div class="form-horizontal">
+
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.Message 
+                      
+                    </div>
+                }
+
+
+
+               
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="field">
+                    <label class="labels" for="Username">Username </label>
+                    <input style="border-color:#2a398c;" type="email" id="Username" name="Username" required="required" autofocus="autofocus" class="form-control" />
+                </div>
+                <br />
+                <div class="field">
+                    <label class="labels" for="Password">Password </label>
+                    <input style="border-color:#2a398c;" type="password" id="Password" name="Password" required="required" autofocus="autofocus" class="form-control" />
+                </div>
+
+
+
+
+                @* MUST ADD A FIELD ON DATABASE CALLED REMEMBER ME. *@
+
+                @*<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>*@
+
+
+
+                <br />
+
+                <input style="background-color:#2a398c; color:white; border-color:#fdba31; border-width:2px; font-weight: bold;" type="submit" value="Login    " class="btn btn-default" />
+
+            </div>
+            <br />
+            <div style="font-weight:bolder;color:white!important" class="reg">
+    @Html.ActionLink("Need Account? Register here!", "Register", "Account")
+                @*@Html.ActionLink("Forgot Password", "ForgotPassword", "Account")*@
+</div>
+        </div>
+        
+    }
+
+
+
+
+
+
+
+<!-- Meta tag Keywords -->
+<!-- css files -->
+<link href="~/Content/loginsytle.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="//fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+
+<!-- //css files -->
+
+
+<div class="w3ls-header">
+    <br />
+        @*<div class="header-main">
+               <h2>login with <a href=""><span>A Registered</span></a> User <a href="#" title="Make sure you use the Username/Email Address and Password that was sent to you during the registration proccess">Email account</a></h2>
+               @if (ViewBag.Message != null)
+                   {
+                   <div class="alert alert-danger" style="color:#ff0000">@ViewBag.Message</div>
+               }
+               <div class="header-bottom">
+                   <div class="header-right w3agile">
+                       <div class="header-left-bottom agileinfo">
+                           @using (Html.BeginForm())
+                           {
+                               @Html.AntiForgeryToken()
+
+
+
+
+                               <div class="icon1">
+                                   <input id="Username" name="Username" type="email" placeholder="Email Address" value="" required="" />
+                               </div>
+                                   <div class="icon1">
+                                       <input type="password" placeholder="Password" id="Password" name="Password" value="" required="" />
+                                   </div>
+                                   <div class="login-check">
+                                       <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Keep me logged in</label>
+
+                                   </div>
+
+                                           <div class="bottom">
+
+                                               <input type="submit" value="Log in" />
+                                               <br /><br />
+                                               <a href="/Account/Register">Click here to register yourself. </a>
+                                           </div>
+                                           <a href="#">Forgot password?</a>
+
+
+
+                                           <br /><br /><br />
+
+                           }
+                       </div>
+                   </div>
+        </div>
+               </div>*@
+   
+
+</div>

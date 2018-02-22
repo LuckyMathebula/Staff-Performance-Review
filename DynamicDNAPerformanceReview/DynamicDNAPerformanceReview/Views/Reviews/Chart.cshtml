@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Chart";
+}
+ 
+
+@{ <div>hello</div>
+
+    CMRSEntities2 db = new CMRSEntities2();
+    int id = Convert.ToInt32(Session["UserId"]);
+    int revid =Convert.ToInt32( Session["Reviewid"]);
+
+
+    List<string>
+    myL = new List<string>
+        ();
+    var query1 = (from Hello in db.ReviewTables
+                  where Hello.UserAccount.UserID==id  && Hello.ReviewID== revid
+                  select new { Hello.OverallAVGman,
+                      Hello.OverallAVGAgreed,Hello.OverallAverage});
+
+    foreach (var item in query1)
+    {
+        myL.Add(item.OverallAVGAgreed);
+        myL.Add(item.OverallAverage);
+        myL.Add(item.OverallAVGman);
+    }
+
+
+
+    //var data = db.Query("SELECT OverallAVGman, OverallAVGAgreed, OverallAverage, FROM ReviewTables");
+    var myChart = new Chart(width: 600,
+    height: 400,
+    theme: ChartTheme.Green
+
+
+    )
+
+    .AddTitle("Overall Average" +" " + DateTime.Now)
+    .AddSeries("Default",
+    xValue: myL, xField: " Rating ",
+    yValues: myL, yFields: " Performance ")
+    .Write();
+
+
+
+        }

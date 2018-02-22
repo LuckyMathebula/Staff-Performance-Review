@@ -1,0 +1,162 @@
+﻿@model DynamicDNAPerformanceReview.ReviewTable
+
+@{
+    ViewBag.Title = "UserDetails";
+}
+
+<head>
+    <link href="~/Content/MyCSS.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Trying.css" rel="stylesheet" />
+</head>
+
+
+<img src="~/Images/logo.png" />
+<br />
+<br />
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+
+                <ul class="topnav">
+                    <li><a class="active" href="">Home</a></li>
+                    @*<li><a href="~/Reviews/Create">Performance</a></li>
+    <li><a href="~/Reviews/Index">Reviews</a></li>
+    <li class="right"><a href="~/Account/Login">Sign in</a></li>*@
+                </ul>
+
+
+
+
+
+
+
+
+                <br />
+                <style>
+                    th {
+                        background-color: #2a398c;
+                        color: white;
+                        text-align: center;
+                    }
+                </style>
+
+
+                <table class="table table-bordered table-hover" >
+
+                    <tr><td colspan="5"><h6 style="text-align:center"><b> Perfromance Review</b></h6></td></tr>
+                    <tr><td colspan="5"><em>please complete all the required sections</em></td>   </tr>
+                    <tr><td colspan="5"><br /> </td> </tr>
+                    <tr><td><b> Employee Name</b></td> <td colspan="5">@Html.DisplayFor(model => model.UserAccount.EmployeeName) @Html.DisplayFor(model => model.UserAccount.EmployeeSurname) </td>   </tr>
+                    <tr><td> <b> Role On Project</b></td><td colspan="5">@Html.DisplayFor(model => model.RoleOnProject) </td> </tr>
+                    <tr><td><b> Project(s)/Engagement(s)</b></td><td colspan="5"> @Html.DisplayFor(model => model.ProjectEngagement) </td></tr>
+                    <tr><td> <b> Line Manager (s)</b></td><td colspan="5">@Html.DisplayFor(model => model.LineManager) </td> </tr>
+                    <tr><td><b> Date of Review</b></td><td colspan="5"> @Html.DisplayFor(model => model.DateOfReview) </td> </tr>
+                    <tr><td><b> Period of Review</b></td><td colspan="5">@Html.DisplayFor(model => model.PeriodOfReview) </td> </tr>
+                    @*<tr><td>  <br />  </td> <td>  </td> <td>  </td> <td>  </td> <td>  </td></tr>*@
+                    <tr><td><b> RATING SCALE FOR <BR /> PERFORMANCE FACTORS</b></td><td>  </td> <td>  </td> <td>  </td> <td> </td></tr>
+                    <tr><td>EXCELLENT</td><td style="text-align:center;"> 1 </td> <td style="text-align:center;"> </td> <td style="text-align:center;">  </td> <td>Objective(s) exceed with outstanding achievements</td></tr>
+                    <tr><td>HIGHLY EFFECTIVE</td><td style="text-align:center;"> 2 </td> <td>  </td> <td>  </td> <td>Objective(s) met with notable achievements</td></tr>
+                    <tr><td>COMPETENT</td><td style="text-align:center;"> 3 </td> <td>  </td> <td>  </td> <td>Objective(s) achieved</td></tr>
+                    <tr><td>LESS THAN COMPETENT</td><td style="text-align:center;"> 4 </td> <td>  </td> <td>  </td> <td>Objective(s) not achieved</td></tr>
+                    <tr><td>UNACCEPTABLE</td><td style="text-align:center;"> 5 </td> <td>  </td> <td>  </td> <td> Unacceptable behaviour/performance </td></tr>
+                    @*<tr><td> <br /> </td><td> </td> <td> </td> <td> </td> <td> </td></tr>*@
+
+
+                    <tr>
+                        <th>Performance Criteria</th>
+                        <th>Peer/ Customer Rating</th>
+                        <th>Management Rating</th>
+                        <th>Agreed Rating</th>
+                        <th>Comments(please add comments, as <br /> it is more valuable feedback than a <br /> performance rating)</th>
+                    </tr>
+                    <tr><td><p><b> Productivity </b> - Volume of completed<br /> work is acceptable, deadlines are met, <br /> use of time is appropriate and results<br /> are acieved</p></td><td style="text-align:center;"> @Html.DisplayFor(model => model.proPeer) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.ProManagement)   </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.proAgreed)   </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.prComments)   </td></tr>
+                    <tr><td><p> <strong> Excellence (quality)</strong> - Commitment <br />towards  quality and excellence  </p></td><td style="text-align:center;">@Html.DisplayFor(model => model.ExPeer) </td> <td style="text-align:center;">@Html.DisplayFor(model => model.ExMan) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.ExAgreed) </td> <td style="text-align:center;">@Html.DisplayFor(model => model.ExComments)  </td></tr>
+                    <tr><td><p> <strong>Judgement</strong> - Timelines and <br /> inappropriatenesess of actions, <br /> responsible and accpountable for<br />  decisions taken </p></td><td style="text-align:center;">@Html.DisplayFor(model => model.JudPeer)  </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.JudMan) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.JudAgreed)  </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.JuComments)</td></tr>
+                    <tr><td><p> <strong>Interpersonal and Communucation<br /> skills </strong> - Ability to be sensitive and <br /> respectful to the needs and feelings <br />of others, communicates well with  <br />others, and is open to feedback </p></td><td style="text-align:center;">@Html.DisplayFor(model => model.IntPeer)  </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.IntMan) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.IntAgreed) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.intComments) </td></tr>
+                    <tr><td><p> <strong>Job Knowledge </strong> Knowledge of field, <br /> depth of knowledge, ability to apply <br />skills in the workplace </p></td><td style="text-align:center;"> @Html.DisplayFor(model => model.JobPeer) </td> <td style="text-align:center;">@Html.DisplayFor(model => model.JobMan) </td> <td style="text-align:center;">@Html.DisplayFor(model => model.JobAgreed)  </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.JobComments)  </td></tr>
+                    <tr><td><p> <strong>Passion, Commitment and attitude </strong> <br />- Interest, cooperation, passion, and <br />enthusiasm are evident. Willing to go <br />"The extra mile" to achieve results</p></td><td style="text-align:center;">@Html.DisplayFor(model => model.PassPeer) </td> <td style="text-align:center;">@Html.DisplayFor(model => model.PassMan)  </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.PassAgreed) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.PassComments) </td></tr>
+                    <tr><td><p> <strong>Teamwork</strong> - Ability to work with others <br /> to achieve overall goals. </p></td><td style="text-align:center;"> @Html.DisplayFor(model => model.TeaPeer)</td> <td style="text-align:center;"> @Html.DisplayFor(model => model.TeaMan)   </td> <td style="text-align:center;">@Html.DisplayFor(model => model.TeaAgreed)  </td> <td style="text-align:center;">@Html.DisplayFor(model => model.TeaComments)  </td></tr>
+                    <tr><td><p> <strong> Growth Ambition </strong>- Level of personal <br /> ambition to meet chellenges to train <br /> and develop </p></td><td style="text-align:center;"> @Html.DisplayFor(model => model.GroPeer) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.GroMan) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.GroAgreed) </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.GroComments) </td></tr>
+                    <tr><td><p> <strong>Overall Average </strong></p></td><td style="text-align:center;">@Html.DisplayFor(model => model.OverallAverage)  <br />-<br /> 40   </td> <td style="text-align:center;">@Html.DisplayFor(model => model.OverallAVGman)  <br />-<br /> 40  </td> <td style="text-align:center;"> @Html.DisplayFor(model => model.OverallAVGAgreed)  <br />-<br /> 40   </td> <td style="text-align:center;">  </td></tr>
+
+                    @*<tr><td> <br /> </td><td>  </td> <td>  </td> <td>  </td> <td>  </td></tr>*@
+                    
+                    <tr><td colspan="5"> <b> General comments (please add any general comments)</b>: @Html.DisplayFor(model => model.GeneralComments)</td> </tr>
+                </table>
+
+                
+                <br />
+                <br />
+                <br />
+                <br />
+                <h3> Growth and Development Planning </h3>
+                <table class="table table table-bordered table-hover">
+
+                    <tr>
+
+                        <th>
+                            Objectives for the Next Period
+                        </th>
+
+                        <th>
+                            Career Plans
+                        </th>
+
+                        <th>
+                            Due Date
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td> @Html.DisplayFor(model => model.ObjectivesNextPeriod)</td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.CareerPlans)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(model => model.DueDate)
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @*<div class="btn">
+
+        <a href="/Reviews/AdminList"><b>Back</b></a>
+
+    </div>*@
+</body>
+
+
+
+<a href="/reviews/Chart"><b>Open Chart</b></a>
+
+<a style="color:#fdba31!important" href="/Reviews/UserList"><b>Back </b></a>

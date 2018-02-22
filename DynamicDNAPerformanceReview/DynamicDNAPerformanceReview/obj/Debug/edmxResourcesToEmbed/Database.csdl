@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbConnection" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Performance_Review_DNAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployeeAccounts" EntityType="dbConnection.EmployeeAccount" />
+    <EntitySet Name="ReviewTables" EntityType="dbConnection.ReviewTable" />
+    <AssociationSet Name="FK_EmployeeAccount_ReviewTable" Association="dbConnection.FK_EmployeeAccount_ReviewTable">
+      <End Role="ReviewTable" EntitySet="ReviewTables" />
+      <End Role="EmployeeAccount" EntitySet="EmployeeAccounts" />
+    </AssociationSet>
+    <EntitySet Name="vw_employeereviews" EntityType="dbConnection.vw_employeereviews" />
+  </EntityContainer>
+  <EntityType Name="EmployeeAccount">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeSurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role_On_Project" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="170" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ReviewTable" Relationship="dbConnection.FK_EmployeeAccount_ReviewTable" FromRole="EmployeeAccount" ToRole="ReviewTable" />
+  </EntityType>
+  <EntityType Name="ReviewTable">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Projects" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LineManager" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfReview" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PeriodOfReview" Type="String" Nullable="false" MaxLength="180" FixedLength="false" Unicode="false" />
+    <Property Name="PerformanceCriteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PeerCustomerRating" Type="Int32" Nullable="false" />
+    <Property Name="ManagementRating" Type="Int32" Nullable="false" />
+    <Property Name="AgreedRating" Type="Int32" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OverallAverage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmployeeAccount" Relationship="dbConnection.FK_EmployeeAccount_ReviewTable" FromRole="ReviewTable" ToRole="EmployeeAccount" />
+  </EntityType>
+  <Association Name="FK_EmployeeAccount_ReviewTable">
+    <End Type="dbConnection.ReviewTable" Role="ReviewTable" Multiplicity="1" />
+    <End Type="dbConnection.EmployeeAccount" Role="EmployeeAccount" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewTable">
+        <PropertyRef Name="ReviewID" />
+      </Principal>
+      <Dependent Role="EmployeeAccount">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_employeereviews">
+    <Key>
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="EmployeeSurname" />
+      <PropertyRef Name="Role_On_Project" />
+      <PropertyRef Name="LineManager" />
+      <PropertyRef Name="DateOfReview" />
+      <PropertyRef Name="PeriodOfReview" />
+      <PropertyRef Name="PeerCustomerRating" />
+      <PropertyRef Name="ManagementRating" />
+      <PropertyRef Name="AgreedRating" />
+    </Key>
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeSurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role_On_Project" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Projects" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LineManager" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfReview" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PeriodOfReview" Type="String" Nullable="false" MaxLength="180" FixedLength="false" Unicode="false" />
+    <Property Name="PerformanceCriteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PeerCustomerRating" Type="Int32" Nullable="false" />
+    <Property Name="ManagementRating" Type="Int32" Nullable="false" />
+    <Property Name="AgreedRating" Type="Int32" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OverallAverage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

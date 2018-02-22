@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMRSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Managements">
+    <Key>
+      <PropertyRef Name="ManagementID" />
+    </Key>
+    <Property Name="ManagementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ComfirmPassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewTables">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fkManagementID" Type="int" />
+    <Property Name="fkEmployeeId" Type="int" />
+    <Property Name="RoleOnProject" Type="nvarchar" MaxLength="150" />
+    <Property Name="ProjectEngagement" Type="nvarchar" MaxLength="250" />
+    <Property Name="LineManager" Type="nvarchar" MaxLength="150" />
+    <Property Name="DateOfReview" Type="datetime" />
+    <Property Name="PeriodOfReview" Type="nvarchar(max)" />
+    <Property Name="proPeer" Type="nvarchar(max)" />
+    <Property Name="ProManagement" Type="nvarchar(max)" />
+    <Property Name="proAgreed" Type="nvarchar(max)" />
+    <Property Name="ExPeer" Type="nvarchar(max)" />
+    <Property Name="ExMan" Type="nvarchar(max)" />
+    <Property Name="ExAgreed" Type="nvarchar(max)" />
+    <Property Name="JudPeer" Type="nvarchar(max)" />
+    <Property Name="JudMan" Type="nvarchar(max)" />
+    <Property Name="JudAgreed" Type="nvarchar(max)" />
+    <Property Name="IntPeer" Type="nvarchar(max)" />
+    <Property Name="IntMan" Type="nvarchar(max)" />
+    <Property Name="IntAgreed" Type="nvarchar(max)" />
+    <Property Name="JobPeer" Type="nvarchar(max)" />
+    <Property Name="JobMan" Type="nvarchar(max)" />
+    <Property Name="JobAgreed" Type="nvarchar(max)" />
+    <Property Name="PassPeer" Type="nvarchar(max)" />
+    <Property Name="PassMan" Type="nvarchar(max)" />
+    <Property Name="PassAgreed" Type="nvarchar(max)" />
+    <Property Name="TeaPeer" Type="nvarchar(max)" />
+    <Property Name="TeaMan" Type="nvarchar(max)" />
+    <Property Name="TeaAgreed" Type="nvarchar(max)" />
+    <Property Name="GroPeer" Type="nvarchar(max)" />
+    <Property Name="GroMan" Type="nvarchar(max)" />
+    <Property Name="GroAgreed" Type="nvarchar(max)" />
+    <Property Name="OverallAverage" Type="nvarchar(max)" />
+    <Property Name="GeneralComments" Type="nvarchar(max)" />
+    <Property Name="prComments" Type="nvarchar(max)" />
+    <Property Name="ExComments" Type="nvarchar(max)" />
+    <Property Name="JuComments" Type="nvarchar(max)" />
+    <Property Name="intComments" Type="nvarchar(max)" />
+    <Property Name="JobComments" Type="nvarchar(max)" />
+    <Property Name="PassComments" Type="nvarchar(max)" />
+    <Property Name="TeaComments" Type="nvarchar(max)" />
+    <Property Name="GroComments" Type="nvarchar(max)" />
+    <Property Name="CareerPlans" Type="nvarchar(max)" />
+    <Property Name="ObjectivesNextPeriod" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="OverallAVGman" Type="nvarchar" MaxLength="50" />
+    <Property Name="OverallAVGAgreed" Type="nvarchar" MaxLength="50" />
+    <Property Name="GrandAverage" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserAccounts">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="EmployeeSurname" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ComfirmPassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ReviewTable_Management">
+    <End Role="Managements" Type="Self.Managements" Multiplicity="0..1" />
+    <End Role="ReviewTables" Type="Self.ReviewTables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managements">
+        <PropertyRef Name="ManagementID" />
+      </Principal>
+      <Dependent Role="ReviewTables">
+        <PropertyRef Name="fkManagementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewTable_UserAccounts">
+    <End Role="UserAccounts" Type="Self.UserAccounts" Multiplicity="0..1" />
+    <End Role="ReviewTables" Type="Self.ReviewTables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccounts">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ReviewTables">
+        <PropertyRef Name="fkEmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CMRSModelStoreContainer">
+    <EntitySet Name="Managements" EntityType="Self.Managements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewTables" EntityType="Self.ReviewTables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ReviewTable_Management" Association="Self.FK_ReviewTable_Management">
+      <End Role="Managements" EntitySet="Managements" />
+      <End Role="ReviewTables" EntitySet="ReviewTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewTable_UserAccounts" Association="Self.FK_ReviewTable_UserAccounts">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="ReviewTables" EntitySet="ReviewTables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
