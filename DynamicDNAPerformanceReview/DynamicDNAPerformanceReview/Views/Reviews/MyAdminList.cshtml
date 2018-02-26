@@ -1,0 +1,309 @@
+﻿@model IEnumerable<DynamicDNAPerformanceReview.ReviewTable>
+
+@{
+    ViewBag.Title = "MyAdminList";
+}
+
+<h2>MyAdminList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleOnProject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectEngagement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LineManager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfReview)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PeriodOfReview)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.proPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProManagement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.proAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JudPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JudMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JudAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IntPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IntMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IntAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeaPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeaMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeaAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroPeer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OverallAverage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneralComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JuComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeaComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerPlans)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObjectivesNextPeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OverallAVGman)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OverallAVGAgreed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrandAverage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Management.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAccount.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleOnProject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectEngagement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LineManager)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfReview)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeriodOfReview)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.proPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProManagement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.proAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JudPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JudMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JudAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IntPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IntMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IntAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeaPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeaMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeaAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroPeer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroMan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverallAverage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneralComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JuComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeaComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerPlans)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObjectivesNextPeriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverallAVGman)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverallAVGAgreed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrandAverage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Management.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.EmployeeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReviewID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReviewID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReviewID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -255,6 +255,15 @@ function myFunction() {
     @ViewBag.Message
 </div>
 
+@using (Html.BeginForm())
+{
+    @Html.Editor("Year")
+    @Html.Editor("Quater")
+    @Html.Editor("Name")
+
+    <div class="col-md-4">   <input type="submit" value="Submit" class="btn btn-success" /></div>
+}
+
 
 
 

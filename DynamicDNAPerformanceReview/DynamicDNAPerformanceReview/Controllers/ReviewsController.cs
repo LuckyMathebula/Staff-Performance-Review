@@ -12,6 +12,8 @@ using System.IO;
 using WebMatrix.Data;
 using Ionic.Zip;
 using System.IO.Compression;
+using DynamicDNAPerformanceReview.Filtters;
+
 namespace DynamicDNAPerformanceReview.Controllers
 {/*[Authorize]*/
     //[HandleError]
@@ -413,6 +415,68 @@ namespace DynamicDNAPerformanceReview.Controllers
             var reviewTables = db.ReviewTables.Where(u => u.fkManagementID == u.Management.ManagementID).Include(r => r.Management).Include(r => r.UserAccount)/*.OrderBy(a=>a.DateOfReview)*/;
             return View(reviewTables.ToList());
         }
+
+        
+        [Authorize]
+        [AllowAnonymous]
+        [Authorize]
+        [HttpPost]
+        public ActionResult AdminList(FormCollection form)
+        {
+            MyFilter filter = new MyFilter();
+            string year = Request.Form["Year"];
+            string quater = Request.Form["Quater"];
+            string name = Request.Form["Name"];
+            if (string.IsNullOrEmpty(name))            
+                name = "0";
+            if (string.IsNullOrEmpty(year))
+                year = "0";
+            
+             
+            if (string.IsNullOrEmpty(quater) && Convert.ToInt32(name)==0 && (string.IsNullOrEmpty(year)!= true))
+            {
+                return View("MyAdminList", filter.ByYear(Convert.ToInt32(year)));
+            }
+            else if ((string.IsNullOrEmpty(quater)!=true) && Convert.ToInt32(name) == 0 && year == "0")
+            {
+                return View("MyAdminList", filter.ByQauter(quater));
+            }
+            else if (string.IsNullOrEmpty(quater) && Convert.ToInt32(name) != 0 && (year == "0"))
+            {
+                return View("MyAdminList", filter.ByName(Convert.ToInt32(name)));
+            }
+            else if (Convert.ToInt32(name) == 0 && (string.IsNullOrEmpty(quater)!= true) && (year != "0"))
+            {
+                return View("MyAdminList", filter.ByYearQuater(year, quater));
+            }
+            else if ((string.IsNullOrEmpty(quater) != true) && (year != "0") && (Convert.ToInt32(name) != 0) )
+            {
+                return View("MyAdminList", filter.ByYearQuaterName(year, quater, Convert.ToInt32(name)));
+            }
+            else if ((string.IsNullOrEmpty(quater)!= true )&& Convert.ToInt32(name) == 0 && (year!="0" ) )
+            {
+                return View("MyAdminList", filter.ByYearQuaterName(year, quater, Convert.ToInt32(name)));
+            }
+            else if ((string.IsNullOrEmpty(year)!= true && Convert.ToInt32(name) != 0 && string.IsNullOrEmpty(quater)))
+            {
+                return View("MyAdminList", filter.ByYearName(year, Convert.ToInt32(name)));
+            }
+            else if (string.IsNullOrEmpty(quater)!=true && Convert.ToInt32(name)!=0&&year=="0")
+            {
+                return View("MyAdminList", filter.ByQuaterName(quater, Convert.ToInt32(name)));
+            }
+            else
+            {
+                return RedirectToAction("MyAdminList");
+            }
+            //return RedirectToAction("MyAdminList");
+        }
+
+        public ActionResult MyAdminList()
+        {
+            return View(db.ReviewTables.ToList());
+        }
+
 
 
         public ActionResult Growth()
